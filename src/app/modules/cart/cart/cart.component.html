@@ -1,0 +1,114 @@
+<div class="container margin_detail_2 px-50">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="pageTitle cart-pageTitle">
+                <h1>Shopping Cart</h1>
+            </div>
+
+            <div class="basketBox">
+                <div class="basketLabel">
+                    <ul>
+                        <li class="item item-heading">Item</li>
+                        <li class="item-name">Product Name</li>
+                        <li class="quantity">Quantity</li>
+                        <li class="subtotal">Total Price</li>
+                    </ul>
+                </div>
+                <div class="basketProduct d-flex align-items-center" *ngFor="let prod of userCart; let i = index">
+                    <div class="item">
+                        <div class="product-image">
+                            <img [src]="prod.ItemImageUrl ? prod.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                alt="Product Image" class="">
+                        </div>
+                    </div>
+                    <div class="product-detail d-flex align-items-center">
+                        <div class="product-name d-flex align-items-center">
+                            <h3 class="mb-0">{{prod.ItemName}}</h3>
+                        </div>
+
+                        <div class="quantity d-flex align-items-center">
+                            <div class="numbers-row mb-0">
+                                <input type="text" [value]="prod.ItemQuantity" id="qty_{{i}}" class="qty2 form-control"
+                                    name="quantity">
+                                <div class="inc button_inc" (click)="incProdQuantity(prod.ItemCartId,prod.ItemItemId)">+
+                                </div>
+                                <div class="dec button_inc" (click)="decProdQuantity(prod.ItemCartId,prod.ItemItemId)">-
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prod-footer d-flex align-items-center">
+                            <div class="subtotal">{{(prod.ItemQuantity * prod.ItemPrice) | currency:'INR'}}</div>
+                            <div class="remove">
+                                <a href="javascript:void(0)"
+                                    (click)="deleteItemInCart(prod.ItemCartId,prod.ItemItemId)">Remove</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--./-->
+                <!-- <div class="basketProduct">
+                    <div class="item">
+                        <div class="product-image">
+                            <img src="../../../../assets/images/thumb_detail_1.jpg" alt="Product Image" class="">
+                        </div>
+                    </div>
+                    <div class="product-detail">
+                        <div class="product-name">
+                            <h3>Product Name Product  </h3>
+                        </div>
+                        <div class="quantity">
+                            <div class="numbers-row">
+                                <input type="text" value="1" id="qty_1" class="qty2 form-control" name="quantity">
+                            <div class="inc button_inc">+</div><div class="dec button_inc">-</div></div>
+                        </div>
+                        <div class="prod-footer">
+                            <div class="subtotal">180.00</div>
+                            <div class="remove">
+                                <a href="#">Remove</a>
+                            </div>
+                        </div>
+                        
+                    </div> 
+                </div> -->
+                <!--./-->
+            </div>
+
+            <div class="subtotal-hero">
+                <div class="subTotal">
+                    <table>
+                        <tr>
+                            <td>Item Total:</td>
+                            <td>{{subTotal > 0 ? (subTotal | currency:'INR') : ''}}</td>
+                        </tr>
+                        <!-- <tr>
+                            <td>Discount:</td>
+                            <td>{{discount > 0 ? discount : ''}}</td>
+                        </tr> -->
+                        <tr>
+                            <td><span>Subtotal:</span></td>
+                            <td>{{subTotalWthDiscount > 0 ? (subTotalWthDiscount | currency:'INR') : ''}}</td>
+                        </tr>
+                        <tr>
+                            <td>Delivery Cost:</td>
+                            <td>{{deliveryCost > 0 ? (deliveryCost | currency:'INR') : ''}}</td>
+                        </tr>
+                        <tr>
+                            <td class="totalValue"><span>Total:</span></td>
+                            <td class="totalValue"><span>{{total > 0 ? (total | currency:'INR') : ''}}</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="buttonBox">
+                    <a routerLink="/Home" class="btn_1 outline type3">Keep Shopping</a>
+                    <a class="btn_1 gradient type4" (click)="updateProductsInCart(true)">Checkout</a>
+                </div>
+            </div>
+
+        </div>
+        <!--./-->
+    </div>
+    <!--row ends-->
+</div>
+<!-- /container -->

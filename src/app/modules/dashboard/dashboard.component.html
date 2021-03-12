@@ -1,0 +1,205 @@
+<div class="dashboard">
+    <div id="carousel-home">
+        <owl-carousel-o [options]="customOptions" (translated)="onSlideTransition($event)"
+            (initialized)="onCarouselInitialized($event)">
+            <ng-template carouselSlide class="slide" id="{{ 'img' + (i+1)}}"
+                *ngFor="let bannerItem of topBanner;let i = index">
+                <div class="owl-slide cover" [ngStyle]="{ 'background-image': 'url(' + bannerItem.bannerImage + ')'}">
+                    <!-- /Would probably better not use LazyLoad fo the first item -->
+                    <div class="opacity-mask d-flex align-items-center" style="background-color: rgba(0, 0, 0, 0.5)">
+                        <div class="container">
+                            <div class="row justify-content-center justify-content-md-end">
+                                <div class="col-lg-6 static">
+                                    <div class="slide-text text-right white" #slideText>
+                                        <h2 class="owl-slide-animated owl-slide-title" id="{{ 'owlAnimated' + (i+1)}}"
+                                            #owlAnimated>
+                                            {{bannerItem.bannerTitle}}
+                                        </h2>
+                                        <p class="owl-slide-animated owl-slide-subtitle" id="{{ 'owlAnimated' + (i+1)}}"
+                                            #owlAnimated>
+                                            {{bannerItem.bannerSubText}}
+                                        </p>
+                                        <div class="owl-slide-animated owl-slide-cta" id="{{ 'owlAnimated' + (i+1)}}"
+                                            #owlAnimated><a class="btn_1"
+                                                (click)="navigateToCategory(bannerItem.bannerDetPageUrl, bannerItem.bannerType)"
+                                                role="button">View
+                                                more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
+    <!--/carousel-->
+
+    <div class="container-fluid margin_15_45 px-50">
+        <div class="main_title center">
+            <h2>Discover unique homemade items</h2>
+        </div>
+        <!-- /main_title -->
+
+        <div class="categories_carousel">
+            <owl-carousel-o [options]="customOptionsTwo">
+                <ng-container *ngFor="let menu of menus; let i = index;">
+                    <ng-template carouselSlide class="slide" [id]="'image' + i">
+                        <div class="item_version_2">
+                            <a href="javascript:void(0)" (click)="navigateToComponent(menu.path)">
+                                <figure>
+                                    <img [src]="menu.imgUrl ? menu.imgUrl : 'assets/images/lazy-placeholder.png'" alt=""
+                                        class="owl-lazy">
+                                    <div class="info">
+                                        <h3>{{menu.label}}</h3>
+                                    </div>
+                                </figure>
+                            </a>
+                        </div>
+                    </ng-template>
+                </ng-container>
+            </owl-carousel-o>
+        </div>
+    </div>
+    <!-- /container -->
+
+    <div class="bg_gray categoriesBox recent-view-wrapper" *ngIf="user">
+        <div class="container-fluid px-50">
+            <div class="main_title">
+                <h2>Recent Viewed</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-2" *ngFor="let item of recentOrderedData">
+                    <div class="strip">
+                        <figure>
+                            <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                <img
+                                    [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                    class="img-fluid lazy" alt="">
+                            </a>
+                        </figure>
+                        <a href="javascript:void(0)" class="strip_info" routerLink="/foods/detail/{{item.ItemItemId}}">
+                            <div class="item_title">
+                                <h3>{{item.ItemName}}</h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- /strip grid -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid px-50">
+        <div class="card type3" id="section1">
+            <div class="main_title">
+                <h2>Food</h2>
+                <a routerLink="/foods" class="view-all-link">View All</a>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-3" *ngFor="let food of foodData">
+                    <div class="cardbody">
+                        <a href="javascript:void(0)" routerLink="/foods/detail/{{food.ItemItemId}}">
+                            <div class="imgBox">
+                                <figure>
+                                    <img [src]="food.ItemImageUrl ? food.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                        alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                </figure>
+                            </div>
+                            <div class="contentBox">
+                                <div class="pro_detials">
+                                    <h3>{{food.ItemName}}</h3>
+                                    <p class="price">Rs.{{food.ItemPrice}}</p>
+                                </div>
+                                <div class="prod_cta">
+                                    <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                        (click)="orderNow($event, food)">Order Now</a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!--./-->
+            </div>
+            <div class="view-all-wrapper">
+                <a routerLink="/foods" class="view-all-link">View All</a>
+            </div>
+        </div>
+
+        <div class="card type3" id="section1">
+            <div class="main_title">
+                <h2>Sugar & Spices</h2>
+                <a routerLink="/sugar-spice">View All</a>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-3" *ngFor="let food of sugarSpiceData">
+                    <div class="cardbody">
+                        <a href="javascript:void(0)" routerLink="/foods/detail/{{food.ItemItemId}}">
+                            <div class="imgBox">
+                                <figure>
+                                    <img [src]="food.ItemImageUrl ? food.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                        alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                </figure>
+                            </div>
+                            <div class="contentBox">
+                                <div class="pro_detials">
+                                    <h3>{{food.ItemName}}</h3>
+                                    <p class="price">Rs.{{food.ItemPrice}}</p>
+                                </div>
+                                <div class="prod_cta">
+                                    <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                        (click)="orderNow($event, food)">Order Now</a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!--./-->
+            </div>
+            <div class="view-all-wrapper">
+                <a routerLink="/sugar-spice" class="view-all-link">View All</a>
+            </div>
+        </div>
+
+        <!-- /banner -->
+        <div id="carousel-home" class="banner-bottom">
+            <owl-carousel-o [options]="customOptions" (translated)="onSlideTransition($event)"
+                (initialized)="onCarouselInitialized($event)">
+                <ng-template carouselSlide class="slide" id="{{ 'img' + (i+1)}}"
+                    *ngFor="let bannerItem of topBanner;let i = index">
+                    <div class="owl-slide cover"
+                        [ngStyle]="{ 'background-image': 'url(' + bannerItem.bannerImage + ')'}">
+                        <!-- /Would probably better not use LazyLoad fo the first item -->
+                        <div class="opacity-mask d-flex align-items-center"
+                            style="background-color: rgba(0, 0, 0, 0.5)">
+                            <div class="container">
+                                <div class="row justify-content-center justify-content-md-end">
+                                    <div class="col-lg-6 static">
+                                        <div class="slide-text text-right white" #slideText>
+                                            <h2 class="owl-slide-animated owl-slide-title"
+                                                id="{{ 'owlAnimated' + (i+1)}}" #owlAnimated>
+                                                {{bannerItem.bannerTitle}}
+                                            </h2>
+                                            <p class="owl-slide-animated owl-slide-subtitle"
+                                                id="{{ 'owlAnimated' + (i+1)}}" #owlAnimated>
+                                                {{bannerItem.bannerSubText}}
+                                            </p>
+                                            <div class="owl-slide-animated owl-slide-cta"
+                                                id="{{ 'owlAnimated' + (i+1)}}" #owlAnimated><a class="btn_1"
+                                                    (click)="navigateToCategory(bannerItem.bannerDetPageUrl, bannerItem.bannerType)"
+                                                    role="button">View
+                                                    more</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+
+    </div>
+</div>

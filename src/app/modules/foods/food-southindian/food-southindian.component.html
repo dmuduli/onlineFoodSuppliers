@@ -1,0 +1,209 @@
+<div class="hero_in detail_page background-image hero__breakfast" id="heroId">
+    <div class="wrapper opacity-mask">
+
+        <div class="container-fluid px-50">
+            <div class="main_info">
+                <h1>South Indian</h1>
+                <p>Sub text goes here</p>
+            </div>
+            <!-- /main_info -->
+        </div>
+    </div>
+</div>
+<!--/hero_in-->
+
+<div class="bg_gray bg_white">
+    <div class="container-fluid margin_detail_2 px-50">
+        <div class="card type3" id="section1">
+            <div class="main_title">
+                <h2>Newly Added</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-3" *ngFor="let item of newlyAdded">
+                    <div class="strip">
+                        <figure>
+                            <img [src]="item.ItemImageUrl" class="img-fluid lazy loaded" alt=""
+                                data-was-processed="true">
+                            <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}"
+                                class="strip_info">
+                                <div class="item_title">
+                                    <h3>{{item.ItemName | titlecase}}</h3>
+                                    <small>{{item.ItemPrice | currency: 'INR'}}</small>
+                                </div>
+                            </a>
+                        </figure>
+                        <div class="cardDetails">
+                            <!-- <div class="score"><strong>{{item.ItemRating}}</strong></div> -->
+                            <a class="btn_1 outline type_3" href="javascript:void(0)"
+                                (click)="orderNow($event, item)">Pre
+                                Order</a>
+                        </div>
+                        <!-- <p class="availablity">{{item.availability}}</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--./card ends-->
+
+        <div class="card type3">
+            <div class="main_title">
+                <h2>Order South Indian Foods Online</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 mb-3" *ngFor="let food of foodData">
+                    <div class="strip">
+                        <figure>
+                            <img [src]="food.ItemImageUrl" class="img-fluid lazy loaded" alt=""
+                                data-was-processed="true">
+                            <a href="javascript:void(0)" routerLink="/foods/detail/{{food.ItemItemId}}"
+                                class="strip_info">
+                                <div class="item_title">
+                                    <h3>{{food.ItemName | titlecase}}</h3>
+                                    <small>{{food.ItemPrice | currency: 'INR'}}</small>
+                                </div>
+                            </a>
+                        </figure>
+                        <div class="cardDetails">
+                            <!-- <div class="score"><strong>{{item.ItemRating}}</strong></div> -->
+                            <a class="btn_1 outline type_3" href="javascript:void(0)" (click)="orderNow($event, food)">
+                                Order Now</a>
+                        </div>
+                        <!-- <p class="availablity">{{item.availability}}</p> -->
+                    </div>
+                </div>
+                <!--./-->
+            </div>
+            <!--./row ends-->
+        </div>
+        <!--./card ends-->
+
+        <div class="card type3" id="section1">
+            <div class="main_title">
+                <h2>Best Sellers</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-3" *ngFor="let item of bestSellers">
+                    <div class="strip">
+                        <figure>
+                            <img [src]="item.ItemImageUrl" class="img-fluid lazy loaded" alt=""
+                                data-was-processed="true">
+                            <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}"
+                                class="strip_info">
+                                <div class="item_title">
+                                    <h3>{{item.ItemName | titlecase}}</h3>
+                                    <small>{{item.ItemPrice | currency: 'INR'}}</small>
+                                </div>
+                            </a>
+                        </figure>
+                        <div class="cardDetails">
+                            <!-- <div class="score"><strong>{{item.ItemRating}}</strong></div> -->
+                            <a class="btn_1 outline type_3" href="javascript:void(0)"
+                                (click)="orderNow($event, item)">Pre
+                                Order</a>
+                        </div>
+                        <!-- <p class="availablity">{{item.availability}}</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--./card ends-->
+
+        <div class="card type3" id="section1">
+            <div class="main_title">
+                <h2>Recommendation</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-lg-3" *ngFor="let item of recommendations">
+                    <div class="strip">
+                        <figure>
+                            <img [src]="item.ItemImageUrl" class="img-fluid lazy loaded" alt=""
+                                data-was-processed="true">
+                            <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}"
+                                class="strip_info">
+                                <div class="item_title">
+                                    <h3>{{item.ItemName | titlecase}}</h3>
+                                    <small>{{item.ItemPrice | currency: 'INR'}}</small>
+                                </div>
+                            </a>
+                        </figure>
+                        <div class="cardDetails">
+                            <!-- <div class="score"><strong>{{item.ItemRating}}</strong></div> -->
+                            <a class="btn_1 outline type_3" href="javascript:void(0)"
+                                (click)="orderNow($event, item)">Pre
+                                Order</a>
+                        </div>
+                        <!-- <p class="availablity">{{item.availability}}</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--./card ends-->
+    </div>
+    <!-- /container -->
+    <div class="container-fluid margin_30_40 px-50">
+        <!--best chefs-->
+        <div class="row">
+            <div class="col-12 main_title">
+                <h2>Chefs near you</h2>
+            </div>
+            <div class="chef_carousel">
+                <owl-carousel-o [options]="customOptionsTwo">
+                    <ng-container *ngFor="let chef of chefData; let i = index;">
+                        <ng-template carouselSlide class="slide" [id]="'image' + i">
+                            <div class="item">
+                                <div class="chefBox">
+                                    <figure>
+                                        <a [routerLink]="['/foods/chef',chef.chefId]"><img [src]="chef.chefImage"
+                                                class="img-fluid lazy" alt=""></a>
+                                    </figure>
+                                    <div class="cardDetails">
+                                        <h3>{{chef.firstname}}</h3>
+                                        <div class="score"><strong>{{chef.chefRating}}</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--./-->
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+            </div>
+            <!-- /carousel -->
+        </div>
+        <!--./row-->
+    </div>
+    <!--container-->
+    <div class="container-fluid margin_30_40 px-50">
+        <!--best chefs-->
+        <div class="row">
+            <div class="col-12 main_title">
+                <h2>Popular cuisine</h2>
+            </div>
+            <div class="chef_carousel">
+                <owl-carousel-o [options]="customOptionsTwo">
+                    <ng-container *ngFor="let cuisine of cuisineData; let i = index;">
+                        <ng-template carouselSlide class="slide" [id]="'image' + i">
+                            <div class="item">
+                                <div class="chefBox">
+                                    <figure>
+                                        <a [routerLink]="['/foods/detail',cuisine.ItemItemId]"><img
+                                                [src]="cuisine.ItemImageUrl" class="img-fluid lazy" alt=""></a>
+                                    </figure>
+                                    <div class="cardDetails">
+                                        <h3>{{cuisine.ItemName}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--./-->
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+                <!-- /carousel -->
+            </div>
+        </div>
+        <!--./row-->
+    </div>
+    <!--container-->
+</div>
+<!-- /bg_gray -->

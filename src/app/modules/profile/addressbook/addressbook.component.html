@@ -1,0 +1,92 @@
+<div class="account-main">
+    <div class="account-header">
+        <span>
+            <a routerLink="/profile/myaccount"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+        </span>
+        <h3>Address Book</h3>
+        <p>Feel free to edit any of your details below so your homemade account is totally up to date.</p>
+        <!-- <p>You currently have no saved addresses. Get started by adding one.</p> -->
+    </div>
+    <div class="account-form">
+        <div class="add-adress" *ngIf="!displayAdrForm">
+            <a href="#" (click)="addInAddrForm()" class="btn_1 gradient full-width">Add new address</a>
+        </div>
+        <div class="addList" *ngIf="!displayAdrForm">
+            <ul>
+                <li class="listing" *ngFor="let address of addressData">
+                    <div class="row">
+                        <div class="col-md-4 col-lg-6">
+                            <div class="addOption">
+                                <ul>
+                                    <li>{{address.fullName}}</li>
+                                    <li style="max-width: 220px;">{{address.address}}</li>
+                                    <li>{{address.city}}</li>
+                                    <li>{{address.state}}</li>
+                                    <li>{{address.zip}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /col -->
+                        <div class="col-md-4 col-lg-6">
+                            <ul class="click">
+                                <li><a href="javascript:void(0)" (click)="editAddrForm(address.Id)">Edit</a></li>
+                                <li><a href="javascript:void(0)" (click)="deleteAddress(address.Id)">Delete</a></li>
+                            </ul>
+                        </div>
+                        <!-- /col -->
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <form *ngIf="displayAdrForm" [formGroup]="addressForm" (ngSubmit)="addUpdateAddress()">
+            <!-- <div class="form-group">
+                <label>Full Name</label>
+                <p *ngIf="fullName!.invalid  && (fullName!.touched || fullName!.dirty)" class="error-msg">
+                    Please enter full name!!</p>
+                <input type="text" name="fullName" class="form-control" formControlName="fullName">
+            </div> -->
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" name="address" class="form-control" formControlName="address">
+                <p *ngIf="address!.invalid  && (address!.touched || address!.dirty)" class="error-msg">
+                    Please enter address!!</p>
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" name="city" class="form-control" formControlName="city">
+                <p *ngIf="city!.invalid  && (city!.touched || city!.dirty)" class="error-msg">Please enter city!!</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="custom_select clearfix">
+                            <label>State</label>
+                            <select class="nice-select wide form-control" tabindex="0" formControlName="state">
+                                <option disabled>Select state</option>
+                                <option *ngFor="let state of allStateData" value="{{state}}">{{state}}</option>
+                                <!-- <option>Sikkim</option>
+                                <option>Manipur</option>
+                                <option>Ladhak</option>
+                                <option>Rajasthan</option> -->
+                            </select>
+                            <p *ngIf="state!.errors?.required  && (state!.touched || state!.dirty)" class="error-msg">Please
+                                select a state!!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Pincode</label>
+                        <input class="form-control" formControlName="zip">
+                        <p *ngIf="pinCode!.invalid  && (pinCode!.touched || pinCode!.dirty)" class="error-msg">
+                            Please enter pincode!!</p>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn_1 gradient full-width type_2">
+                {{isNewAddress ? 'Save Address' : 'Update Address'}}
+            </button>
+        </form>
+    </div>
+</div>

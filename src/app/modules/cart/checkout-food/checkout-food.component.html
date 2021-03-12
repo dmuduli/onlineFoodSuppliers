@@ -1,0 +1,284 @@
+<div class="container margin_detail_2 px-50">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pageTitle">
+                <h1>Secure Checkout</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row checkoutBox">
+        <div id="box1" class="col-xl-7 col-lg-8">
+            <div class="main">
+                <form [formGroup]="deliveryForm" (ngSubmit)="onSubmit()" class="checkout-form-wrapper">
+                    <div class="locationBox">
+                        <h3>Your Location</h3>
+                        <div class="form-group changeLocation">
+                            <label>Set Your Delivery Location</label>
+                            <input type="text" class="form-control" formControlName="deliveryLocation" #deliveryLocation
+                                (onfocus)="geolocate()">
+                            <p *ngIf="submitted && f.deliveryLocation.errors && f.deliveryLocation.errors.required"
+                                class="error-msg">Please select a location for delivery!!</p>
+                            <span><a href="javascript:void(0)" title="Change Location"
+                                    (click)="onLocationChange()">Change</a></span>
+                        </div>
+                    </div>
+                    <!--location-->
+                    <div class="deliveryTime">
+                        <h3>Schedule your Delivery Date & Time</h3>
+                        <div class="form-group order-type">
+                            <label class="container_radio">Now
+                                <input type="radio" value="now" name="deliveryType" formControlName="deliveryType">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container_radio">Pre Order
+                                <input type="radio" value="preoder" name="deliveryType" formControlName="deliveryType">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <!--order type-->
+                        <div class="dropdown day">
+                            <a href="#" data-toggle="dropdown" aria-expanded="false"
+                                [ngClass]="{disabled : disableDateTime}">Day <span
+                                    id="selected_day">{{selectedDay}}</span></a>
+                            <div class="dropdown-menu" style="">
+                                <div class="dropdown-menu-content">
+                                    <h4>Which day delivered?</h4>
+                                    <div class="radio_select chose_day">
+                                        <ul>
+                                            <li>
+                                                <input type="radio" id="day_1" name="deliveryDay" value="Today"
+                                                    formControlName="deliveryDay" checked>
+                                                <label for="day_1">Today<em>-40%</em></label>
+                                            </li>
+                                            <li *ngIf="!isScheduleNowSelected">
+                                                <input type="radio" id="day_2" name="deliveryDay" value="Tomorrow"
+                                                    formControlName="deliveryDay">
+                                                <label for="day_2">Tomorrow<em>-40%</em></label>
+                                            </li>
+                                            <li *ngIf="!isScheduleNowSelected">
+                                                <input type="radio" id="day_3" name="deliveryDay" value="AfterTomorrow"
+                                                    formControlName="deliveryDay">
+                                                <label for="day_3">Day After Tomorrow<em>-40%</em></label>
+                                            </li>
+                                            <li *ngIf="!isScheduleNowSelected">
+                                                <input type="radio" id="day_4" name="deliveryDay" value="Overmorrow"
+                                                    formControlName="deliveryDay">
+                                                <label for="day_4">Overmorrow<em>-40%</em></label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- /people_select -->
+                                </div>
+                            </div>
+                        </div>
+                        <p *ngIf="submitted && f.deliveryDay.errors && f.deliveryDay.errors.required" class="error-msg">
+                            Please select day for delivery!!</p>
+                        <div class="dropdown time">
+                            <a href="#" data-toggle="dropdown" aria-expanded="false"
+                                [ngClass]="{disabled : disableDateTime}">Time <span
+                                    id="selected_time">{{selectedTime}}</span></a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-content">
+                                    <h4>Breakfast</h4>
+                                    <div class="radio_select add_bottom_15">
+                                        <ul>
+                                            <li>
+                                                <input type="radio" id="time_1" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="08:00">
+                                                <label for="time_1">08:00<em>-40%</em></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="time_2" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="08:30">
+                                                <label for="time_2">08:30<em>-40%</em></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="time_3" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="09:00">
+                                                <label for="time_3">09:00<em>-40%</em></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="time_4" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="09:30">
+                                                <label for="time_4">09:30<em>-40%</em></label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <h4>Lunch</h4>
+                                    <div class="radio_select add_bottom_15">
+                                        <ul>
+                                            <li>
+                                                <input type="radio" id="time_5" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="12:00">
+                                                <label for="time_5">12:00<em>-40%</em></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="time_6" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="12:30">
+                                                <label for="time_6">12:30<em>-40%</em></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="time_7" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="13:00">
+                                                <label for="time_7">13:00<em>-40%</em></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="time_8" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="13:30">
+                                                <label for="time_8">13:30<em>-40%</em></label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- /time_select -->
+                                    <h4>Dinner</h4>
+                                    <div class="radio_select">
+                                        <ul>
+                                            <li>
+                                                <input type="radio" id="time_9" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="20:00">
+                                                <label for="time_9">20:00<em>-40%</em></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="time_10" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="20:30">
+                                                <label for="time_10">20:30<em>-40%</em></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="time_11" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="21:00">
+                                                <label for="time_11">21:00<em>-40%</em></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="time_12" name="deliveryTime"
+                                                    formControlName="deliveryTime" value="21:30">
+                                                <label for="time_12">21:30<em>-40%</em></label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- /time_select -->
+                                </div>
+                            </div>
+                        </div>
+                        <p *ngIf="submitted && f.deliveryTime.errors && f.deliveryTime.errors.required"
+                            class="error-msg">Please select time for delivery!!</p>
+                        <p *ngIf="deliveryTime!.errors?.PastTime  && deliveryTime!.dirty" class="error-msg">The time is
+                            already past!!</p>
+                    </div>
+                    <!--schedule-->
+                    <!--main-form-->
+                    <h3>Delivery/Shipping Address</h3>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" class="form-control" formControlName="fullName">
+                        <p *ngIf="submitted && f.fullName.errors && f.fullName.errors.required" class="error-msg">
+                            Please enter name for delivery!!</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control" formControlName="address">
+                        <p *ngIf="submitted && f.address.errors && f.address.errors.required" class="error-msg">
+                            Please enter address for delivery!!</p>
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <!-- <select class="nice-select wide form-control" tabindex="0" formControlName="city">
+                            <option class="option" disabled>Select city</option>
+                            <option class="option">Delhi</option>
+                            <option class="option">Noida</option>
+                            <option class="option">Ladhak</option>
+                        </select> -->
+                        <input type="text" class="form-control" formControlName="city">
+                        <p *ngIf="submitted && f.city.errors && f.city.errors.required" class="error-msg">Please
+                            enter your city for delivery!!</p>
+                        <p *ngIf="f.city!.errors?.location  && (f.city!.touched || f.city!.dirty)" class="error-msg">The delivery location 
+                            doesnt match the current location!!</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="custom_select clearfix">
+                                    <label>State</label>
+                                    <select class="nice-select wide form-control" tabindex="0" formControlName="state">
+                                        <option class="option" disabled>Select state</option>
+                                        <option class="option" *ngFor="let state of allStateData" value="{{state}}">{{state}}</option>
+                                    </select>
+                                    <p *ngIf="submitted && f.state.errors && f.state.errors.required" class="error-msg">
+                                        Please select the state for delivery!!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pincode</label>
+                                <input class="form-control" formControlName="pinCode">
+                                <p *ngIf="submitted && f.pinCode.errors && f.pinCode.errors.required" class="error-msg">
+                                    Please enter pincode for delivery!!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn_1 gradient" >Contine to Payment</button>
+                </form>
+
+            </div>
+        </div>
+        <!-- /col -->
+        <div id="box2" class="col-xl-5 col-lg-4">
+
+            <div class="box_order">
+                <div class="box-mobile dHide">
+                    <div class="summary-link"><a (click)="expandOrderSummary()">View Order Summary</a></div>
+                    <div class="price">&#8377; 650</div>
+                </div>
+                <div class="main" [ngClass]="{full : displayOrderSummary}">
+                    <ul>
+                        <li>Date<span>Today {{today}}</span></li>
+                        <li>Time<span>{{time}}</span></li>
+                    </ul>
+                    <hr>
+                    <ul class="clearfix">
+                        <table class="food-summary-cart">
+                            <tbody>
+                                <tr *ngFor="let prod of userCart; let i = index">
+                                    <td>{{prod.ItemName}}</td>
+                                    <td>
+                                        <div class="numbers-row">
+                                            <input type="text" value="1" id="qty_{{i}}" [value]="prod.ItemQuantity"
+                                                class="qty2 form-control" name="quantity">
+                                            <div class="inc button_inc"
+                                                (click)="incProdQuantity(prod.ItemCartId,prod.ItemItemId,prod.ItemQuantity)">+</div>
+                                            <div class="dec button_inc"
+                                                (click)="decProdQuantity(prod.ItemCartId,prod.ItemItemId,prod.ItemQuantity)">-</div>
+                                        </div>
+                                    </td>
+                                    <td>{{(prod.ItemQuantity * prod.ItemPrice) | currency:'INR'}}</td>
+                                </tr>
+                                <!--./-->
+                                <!-- <tr>
+                                    <td>Pizza with extra cheese</td>
+                                    <td>
+                                        <div class="numbers-row">
+                                            <input type="text" value="1" id="qty_1" class="qty2 form-control" name="quantity">
+                                            <div class="inc button_inc">+</div><div class="dec button_inc">-</div>
+                                        </div>
+                                    </td>
+                                    <td>500</td>
+                                </tr>./ -->
+                            </tbody>
+                        </table>
+                    </ul>
+                    <hr>
+                    <ul class="clearfix">
+                        <li>Subtotal<span>{{subTotal > 0 ? (subTotal | currency:'INR') : ''}}</span></li>
+                        <!-- <li>Discount<span>{{discount > 0 ? (discount | percent) : ''}}</span></li> -->
+                        <li>Delivery/Shipping Charge<span>{{deliveryCost > 0 ? (deliveryCost | currency:'INR') : ''}}</span></li>
+                        <li class="total">Total<span>{{(subTotal - discount + deliveryCost) > 0 ? ((subTotal - discount + deliveryCost) | currency:'INR') : ''}}</span></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /box_booking -->
+        </div>
+
+    </div>
+    <!-- /row -->
+</div>
+<!-- /container -->

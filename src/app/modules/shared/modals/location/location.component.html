@@ -1,0 +1,20 @@
+<!-- Sign In Modal -->
+<div id="sign-in-dialog" class="zoom-anim-dialog">
+    <div class="modal_header">
+        <h3>Set your location</h3>
+    </div>
+    <form name="location-form">
+        <div class="form-group changeLocation">
+            <input type="text" class="form-control" placeholder="Enter street name, area etc..." [(ngModel)]="location"
+                (onfocus)="geolocate()" #deliveryLocation name="location">
+            <span><a href="javascript:void(0)" title="Change Location" (click)="getCurrentLocation()">Get current
+                    location</a></span>
+        </div>
+    </form>
+    <!--form -->
+
+    <a href="javascript:void(0)" class="modal__close" (click)="dialogRef.close()">
+        <i class="material-icons">close</i>
+    </a>
+</div>
+<!-- /Sign In Modal -->

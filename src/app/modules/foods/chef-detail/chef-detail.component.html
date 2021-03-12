@@ -1,0 +1,251 @@
+<div class="chef">
+    <div class="container-fluid margin_detail_2 px-50">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="detail_page_head clearfix">
+                    <div class="rating">
+                        <div class="score">
+                            <span>{{ratingCmt}}
+                                <em>{{reviewData.length}} Reviews</em></span><strong
+                                class="rating">{{ratingAvg}}</strong>
+                        </div>
+                    </div>
+                    <div class="title">
+                        <h1>{{chef.name}}</h1>
+                        {{chef.type}}<br>
+                    </div>
+                </div>
+                <!-- /detail_page_head -->
+                <h6>About</h6>
+                <p>{{chef.about}}</p>
+            </div>
+            <div class="col-lg-4">
+                <div class="profile-img">
+                    <img [src]="chef.imgUrl ? chef.imgUrl : 'assets/images/lazy-placeholder.png'" class="img-fluid"
+                        alt="">
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+
+    <nav class="secondary_nav sticky_horizontal">
+        <div class="container-fluid px-50">
+            <ul id="secondary_nav">
+                <li><a class="list-group-item list-group-item-action" routerLink="/foods/chef/{{vendorId}}"
+                        fragment="section-1">Starters</a></li>
+                <li><a class="list-group-item list-group-item-action" routerLink="/foods/chef/{{vendorId}}"
+                        fragment="section-2">Main Courses</a></li>
+                <li><a class="list-group-item list-group-item-action" routerLink="/foods/chef/{{vendorId}}"
+                        fragment="section-5"><i class="icon_chat_alt"></i>Reviews</a></li>
+            </ul>
+        </div>
+        <span></span>
+    </nav>
+    <!-- /secondary_nav -->
+
+    <div class="bg_gray">
+        <div class="container-fluid margin_detail px-50">
+            <div class="row">
+                <div class="col-lg-8 list_menu">
+                    <section [id]="'section-' + [i + 1]" *ngFor="let item of menus; let i = index;">
+                        <h4>{{item.type}}</h4>
+                        <div class="table_wrapper">
+                            <table class="table cart-list menu-gallery">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Item
+                                        </th>
+                                        <th>
+                                            Price
+                                        </th>
+                                        <th>
+                                            Order
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let dish of item.menu; let indx = index;">
+                                        <td class="d-md-flex align-items-center">
+                                            <figure>
+                                                <a href="javascript:void(0)" title="Photo title"
+                                                    data-effect="mfp-zoom-in"><img
+                                                        [src]="dish.imgUrl ? dish.imgUrl : 'assets/images/lazy-placeholder.png'"
+                                                        alt="thumb" class="lazy"></a>
+                                            </figure>
+                                            <div class="flex-md-column dish-name">
+                                                <h4>{{dish.id}}. {{dish.name}}</h4>
+                                                <p>
+                                                    {{dish.description}}
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <strong>₹{{dish.price}}</strong>
+                                        </td>
+                                        <td class="options">
+                                            <a href="#" (click)="orderNow($event, dish)" class="modal_dialog"><i
+                                                    class="icon_plus_alt2"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <!-- /section -->
+
+                </div>
+                <!-- /col -->
+
+                <div class="col-lg-4" id="sidebar_fixed">
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bg_gray -->
+
+    <!-- /container -->
+    <div class="container-fluid px-50">
+        <div class="row">
+            <section id="section-5" class="col-md-8 margin_30_40 customer-review-container">
+                <h4>Customer review & ratings</h4>
+                <div class="row add_bottom_30 d-flex align-items-center reviews">
+                    <div class="col-md-3">
+                        <div class="ratingAgg">
+                            <div id="review_summary">
+                                <strong>{{ratingAvg}}</strong>
+                            </div>
+                            <div class="starTotal">
+                                <div class="starRating">
+                                    <span class="fill"
+                                        [ngStyle]="{'color':ratingAvg >= 1 ? '#242424' : '#f2f2f2'}"></span>
+                                    <span class="fill"
+                                        [ngStyle]="{'color':ratingAvg >= 2 ? '#242424' : '#f2f2f2'}"></span>
+                                    <span class="fill"
+                                        [ngStyle]="{'color':ratingAvg >= 3 ? '#242424' : '#f2f2f2'}"></span>
+                                    <span class="fill"
+                                        [ngStyle]="{'color':ratingAvg >= 4 ? '#242424' : '#f2f2f2'}"></span>
+                                    <span class="fill"
+                                        [ngStyle]="{'color':ratingAvg >= 5 ? '#242424' : '#f2f2f2'}"></span>
+                                </div>
+                                <div class="ratingsTotal">
+                                    {{reviewData.length}} ratings
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 reviews_sum_details">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="d-flex reviewList">
+                                    <h6>5 stars</h6>
+                                    <div class="col-xl-8 col-lg-9 col-9">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar"
+                                                [style.width.%]="this.ratingCnt[4].percent"
+                                                attr.aria-valuenow="{{this.ratingCnt[4].percent}}" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <h6>{{this.ratingCnt[4].count}}</h6>
+                                </div>
+
+                                <div class="d-flex reviewList">
+                                    <h6>4 stars</h6>
+                                    <div class="col-xl-8 col-lg-9 col-9">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar"
+                                                [style.width.%]="this.ratingCnt[3].percent"
+                                                attr.aria-valuenow="{{this.ratingCnt[3].percent}}" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <h6>{{this.ratingCnt[3].count}}</h6>
+                                </div>
+
+                                <div class="d-flex reviewList">
+                                    <h6>3 stars</h6>
+                                    <div class="col-xl-8 col-lg-9 col-9">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar"
+                                                [style.width.%]="this.ratingCnt[2].percent"
+                                                attr.aria-valuenow="{{this.ratingCnt[2].percent}}" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <h6>{{this.ratingCnt[2].count}}</h6>
+                                </div>
+
+                                <div class="d-flex reviewList">
+                                    <h6>2 stars</h6>
+                                    <div class="col-xl-8 col-lg-9 col-9">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar"
+                                                [style.width.%]="this.ratingCnt[1].percent"
+                                                attr.aria-valuenow="{{this.ratingCnt[1].percent}}" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <h6>{{this.ratingCnt[1].count}}</h6>
+                                </div>
+
+                                <div class="d-flex reviewList">
+                                    <h6>1 stars</h6>
+                                    <div class="col-xl-8 col-lg-9 col-9">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar"
+                                                [style.width.%]="this.ratingCnt[0].percent"
+                                                attr.aria-valuenow="{{this.ratingCnt[0].percent}}" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                    <h6>{{this.ratingCnt[0].count}}</h6>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5" *ngIf="user">
+                                <div class="reviewBox">
+                                    <a href="javascript:void(0)" class="btn_1 outline type_2"
+                                        routerLink="/foods/leave-review/{{'chef'}}/{{vendorId}}">Leave
+                                        a Review</a>
+                                </div>
+                                <!-- /row -->
+                            </div>
+                        </div>
+                        <!-- /row -->
+                    </div>
+                </div>
+                <!-- /row -->
+
+                <div id="reviews">
+                    <div class="review_card" *ngFor="let review of reviewData">
+                        <div class="row">
+                            <div class="col-md-2 user_info">
+                                <figure><img
+                                        [src]="review.reviewUserImage ? review.reviewUserImage : 'assets/images/lazy-placeholder.png'"
+                                        alt=""></figure>
+                                <h5>{{review.reviewUserName}}</h5>
+                            </div>
+                            <div class="col-md-10 review_content">
+                                <div class="clearfix add_bottom_15">
+                                    <span class="rating">{{review.reviewRating}}<small>/5 </small> <strong> Rating
+                                            average</strong></span>
+                                    <em>Published {{review.reviewCreatedTime | date : 'medium'}}</em>
+                                </div>
+                                <h4>{{review.rewviewTitle}}</h4>
+                                <p>{{review.reviewDesc}}</p>
+                            </div>
+                        </div>
+                        <!-- /row -->
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- /container -->
+    </div>
+</div>

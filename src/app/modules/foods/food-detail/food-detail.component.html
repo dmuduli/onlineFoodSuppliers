@@ -1,0 +1,255 @@
+<div class="food-detail">
+  <div class="container px-50">
+    <div class="row">
+      <div class="col-lg-8">
+        <figure>
+          <img [src]="foodDetailData.ItemImageUrl ? foodDetailData.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+            class="img-fluid food-img" alt="product-img">
+        </figure>
+      </div>
+      <!--./-->
+
+      <div class="col-lg-4">
+        <div class="productBox">
+          <div class="product-details">
+            <h3 class="product-title">{{foodDetailData.ItemName}}</h3>
+          </div>
+
+          <div class="rating">
+            <p class="score">
+              <span class="rating-number">{{ratingAvg}}</span>
+              <span class="fill" [ngStyle]="{'color':ratingAvg >= 1 ? '#242424' : '#f2f2f2'}"></span>
+              <span class="fill" [ngStyle]="{'color':ratingAvg >= 2 ? '#242424' : '#f2f2f2'}"></span>
+              <span class="fill" [ngStyle]="{'color':ratingAvg >= 3 ? '#242424' : '#f2f2f2'}"></span>
+              <span class="fill" [ngStyle]="{'color':ratingAvg >= 4 ? '#242424' : '#f2f2f2'}"></span>
+              <span class="fill" [ngStyle]="{'color':ratingAvg >= 5 ? '#242424' : '#f2f2f2'}"></span>
+            </p>
+          </div>
+
+          <div class="price">
+            <h3>&#8377; {{foodDetailData.ItemPrice}} <span class="quantity">({{ (foodDetailData.ItemQuantity
+                ? foodDetailData.ItemQuantity : '')
+                + ' ' + (foodDetailData.ItemUnit ? foodDetailData.ItemUnit : '')}})</span></h3>
+          </div>
+          <div class="availablity">
+            <span class="bold">Available On &nbsp;</span>{{foodDetailData.ItemDateOfServcie ?
+            transformDateVal(foodDetailData.ItemDateOfServcie) : ''}}
+            <span class="bold">From</span>
+            {{foodDetailData.ItemAvailableFrom ?
+            (foodDetailData.ItemAvailableFrom | date: 'shortTime') : '&nbsp;' }}
+            <span class="bold">To</span> {{foodDetailData.ItemAvailableTill ? (foodDetailData.ItemAvailableTill
+            | date: 'shortTime') : '&nbsp;'}}
+          </div>
+          <!-- <div class="availablity">
+            {{foodDetailData.ItemStatus ? (foodDetailData.ItemStatus === 'INActive' ? 'Out Of Stock' : 'In Stock') :
+            ''}}</div> -->
+
+          <div class="btn_1_mobile">
+            <a href="javascript:void(0)" (click)="orderNow($event, foodDetailData)"
+              class="btn_1 gradient full-width mb_5 modal_dialog mb32">Order
+              Now</a>
+          </div>
+
+          <div class="chefDetails">
+              <div class="card">
+                <div class="card-header">
+                  <h5>
+                    Details about the meal
+                  </h5>
+                </div>
+                <div class="card-body">
+                  <p>{{foodDetailData.ItemDesc}}</p>
+                </div>
+              </div>
+              <!-- /card -->
+
+              <div class="card">
+                <div class="card-header">
+                  <h5>
+                    Meet our Chef
+                  </h5>
+                </div>
+                  <div class="card-body">
+                    <div class="chefInfo">
+                      <img [src]="chefData.chefImage ? chefData.chefImage : 'assets/images/lazy-placeholder.png'"
+                        class="img-fluid" (click)="navigateToChefDetail(chefData.chefId)">
+
+                      <div class="chefTitle">
+                        <h3 class="chefName">{{chefData.firstname}}
+                        </h3>
+                        <p>{{chefData.chefDesc}}</p>
+                        <!-- <p>Owner of <a [routerLink]="['/foods/chef',chefData.chefId]">ABC
+                                                        Kitchen</a></p> -->
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <!-- /card -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- /container -->
+  <div class="container px-50">
+    <div class="row">
+      <section id="section-5" class="col-md-8 margin_30_40 customer-review-wrapper">
+        <h4>Customer review & ratings</h4>
+        <div class="row add_bottom_30 d-flex align-items-center reviews">
+          <div class="col-md-3">
+            <div class="ratingAgg">
+              <div id="review_summary">
+                <strong>{{ratingAvg}}</strong>
+              </div>
+              <div class="starTotal">
+                <div class="starRating">
+                  <span class="fill" [ngStyle]="{'color':ratingAvg >= 1 ? '#242424' : '#f2f2f2'}"></span>
+                  <span class="fill" [ngStyle]="{'color':ratingAvg >= 2 ? '#242424' : '#f2f2f2'}"></span>
+                  <span class="fill" [ngStyle]="{'color':ratingAvg >= 3 ? '#242424' : '#f2f2f2'}"></span>
+                  <span class="fill" [ngStyle]="{'color':ratingAvg >= 4 ? '#242424' : '#f2f2f2'}"></span>
+                  <span class="fill" [ngStyle]="{'color':ratingAvg >= 5 ? '#242424' : '#f2f2f2'}"></span>
+                </div>
+                <div class="ratingsTotal">
+                  {{reviewData.length}} ratings
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-9 reviews_sum_details">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="d-flex reviewList">
+                  <h6>5 stars</h6>
+                  <div class="col-xl-8 col-lg-9 col-8">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" [style.width.%]="this.ratingCnt[4].percent"
+                        attr.aria-valuenow="{{this.ratingCnt[4].percent}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <h6>{{this.ratingCnt[4].count}}</h6>
+                </div>
+
+                <div class="d-flex reviewList">
+                  <h6>4 stars</h6>
+                  <div class="col-xl-8 col-lg-9 col-8">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" [style.width.%]="this.ratingCnt[3].percent"
+                        attr.aria-valuenow="{{this.ratingCnt[3].percent}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <h6>{{this.ratingCnt[3].count}}</h6>
+                </div>
+
+                <div class="d-flex reviewList">
+                  <h6>3 stars</h6>
+                  <div class="col-xl-8 col-lg-9 col-8">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" [style.width.%]="this.ratingCnt[2].percent"
+                        attr.aria-valuenow="{{this.ratingCnt[2].percent}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <h6>{{this.ratingCnt[2].count}}</h6>
+                </div>
+
+                <div class="d-flex reviewList">
+                  <h6>2 stars</h6>
+                  <div class="col-xl-8 col-lg-9 col-8">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" [style.width.%]="this.ratingCnt[1].percent"
+                        attr.aria-valuenow="{{this.ratingCnt[1].percent}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <h6>{{this.ratingCnt[1].count}}</h6>
+                </div>
+
+                <div class="d-flex reviewList">
+                  <h6>1 stars</h6>
+                  <div class="col-xl-8 col-lg-9 col-8">
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" [style.width.%]="this.ratingCnt[0].percent"
+                        attr.aria-valuenow="{{this.ratingCnt[0].percent}}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <h6>{{this.ratingCnt[0].count}}</h6>
+                </div>
+              </div>
+
+              <div class="col-md-5" *ngIf="user">
+                <div class="reviewBox">
+                  <a href="javascript:void(0)" class="btn_1 outline type_2"
+                    routerLink="/foods/leave-review/{{foodDetailData.ItemItemId}}/{{foodDetailData.ItemVendorId}}">Leave
+                    a Review</a>
+                </div>
+                <!-- /row -->
+              </div>
+            </div>
+            <!-- /row -->
+          </div>
+        </div>
+        <!-- /row -->
+
+        <div id="reviews">
+          <div class="review_card" *ngFor="let review of reviewData">
+            <div class="row">
+              <div class="col-md-2 user_info">
+                <figure><img
+                    [src]="review.reviewUserImage ? review.reviewUserImage : 'assets/images/lazy-placeholder.png'"
+                    alt=""></figure>
+                <h5>{{review.reviewUserName}}</h5>
+              </div>
+              <div class="col-md-10 review_content">
+                <div class="clearfix add_bottom_15">
+                  <span class="rating">{{review.reviewRating}}<small>/5 </small> <strong> Rating
+                      average</strong></span>
+                  <em>Published {{review.reviewCreatedTime | date : 'medium'}}</em>
+                </div>
+                <h4>{{review.rewviewTitle}}</h4>
+                <p>{{review.reviewDesc}}</p>
+              </div>
+            </div>
+            <!-- /row -->
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- /container -->
+  </div>
+
+  <div class="container-fluid px-50">
+      <div class="card type3" id="section5">
+        <div class="main_title">
+          <h2>More food of this Chef</h2>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-lg-3" *ngFor="let item of vendorFoodData">
+            <div class="cardbody">
+              <a href="javascript:void(0)" (click)="navToFoodDetail(item.ItemItemId)">
+                <div class="imgBox">
+                  <figure>
+                    <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'" alt=""
+                      class="lazy loaded img-fluid" data-was-processed="true">
+                  </figure>
+                </div>
+                <div class="contentBox">
+                  <div class="pro_detials">
+                    <h3>{{item.ItemName}}</h3>
+                    <p class="price">Rs.{{item.ItemPrice}}</p>
+                  </div>
+                  <div class="prod_cta">
+                    <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                      (click)="orderNow($event, item)">Order Now</a>
+                  </div>
+
+                  <!-- <p class="availablity">{{item.availability}}</p> -->
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--./card ends-->
+  </div>
+</div>

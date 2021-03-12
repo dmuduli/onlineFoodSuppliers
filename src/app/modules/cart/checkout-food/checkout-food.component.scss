@@ -1,0 +1,366 @@
+@import "~src/assets/stylesheets/scss/variables";
+@import "~src/assets/stylesheets/scss/mixin";
+
+
+.checkout-form-wrapper{
+  letter-spacing: 0.1em;
+  h3{
+    font-weight: 600;
+    color: #1c1b1b;
+    margin-bottom: 20px;
+  }
+}
+.dropdown {
+  border: 1px dotted $border-color-5;
+  padding: 0;
+  margin-bottom: 5px;
+
+  a {
+    padding: 15px 15px 12px 15px;
+    line-height: 1;
+    color: #8a8a8a;
+    font-weight: 400;
+    display: block;
+    position: relative;
+
+    &:after {
+      font-family: "food";
+      @include fontSize(21px);
+      font-weight: bold;
+      @include transition-default;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+  }
+
+  &.show a {
+    color: #333;
+
+    &:after {
+      transform: rotateY(360deg);
+      color: #333;
+    }
+  }
+
+  .dropdown-menu {
+    @include fontSize(14px);
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    @include border-radius(0);
+    padding: 15px;
+    width: 100.5%;
+    left: -1px !important;
+    right: -1px !important;
+    margin: 5px 0 0 0;
+
+    h4 {
+      text-align: center;
+      @include fontSize(14px);
+      text-transform: uppercase;
+    }
+  }
+}
+
+.dropdown.time a:after {
+  content: "\0057";
+}
+
+.dropdown.time {
+  margin-bottom: 25px;
+  margin-top: 15px;
+}
+
+.dropdown.day a:after {
+  font-family: "ElegantIcons";
+  content: "\e023";
+  font-weight: 300;
+}
+
+.radio_select {
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    li {
+      display: inline-block;
+      margin: 0;
+      width: 23.5%;
+    }
+  }
+
+  &.chose_day {
+    ul li {
+      width: 43.5%;
+    }
+  }
+
+  input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+  }
+
+  label {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    padding: 8px;
+    border: 1px dotted $border-color-5;
+    background-color: #fff;
+    @include fontSize(16px);
+
+    em {
+      display: block;
+      color: red;
+      font-style: normal;
+      @include fontSize(11px);
+      font-weight: 500;
+    }
+  }
+
+  label:hover {
+    background-color: #dfd;
+  }
+
+  input[type="radio"]:focus + label {
+    border: 1px solid transparent;
+    background-color: $color-1;
+    color: #fff;
+
+    em {
+      color: #ffff66;
+    }
+  }
+
+  input[type="radio"]:checked + label {
+    border: 1px solid transparent;
+    background-color: $color-1;
+    color: #fff;
+
+    em {
+      color: #ffff66;
+    }
+  }
+}
+
+.box_order {
+  background-color: #fafafa;
+  // @include box-shadow (0px 0px 15px 0px rgba(0, 0, 0, 0.10));
+
+  .head {
+    text-align: center;
+    border-bottom: 1px solid #ededed;
+    padding: 17px 20px 12px 20px;
+    background-color: #454545;
+    color: #fff;
+
+    h3 {
+      @include fontSize(21px);
+      margin: 0;
+      color: #fff;
+    }
+  }
+
+  .main {
+    padding: 25px 50px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 8px;
+
+        &.total {
+          @include fontSize(18px);
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+
+        a {
+          // padding-left: 25px;
+          color: $body-text-color;
+          display: inline-block;
+          position: relative;
+
+          &:before {
+            font-family: "ElegantIcons";
+            content: "\4f";
+            @include fontSize(16px);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            line-height: 1;
+            display: none;
+          }
+
+          &:hover {
+            color: #e74747;
+          }
+        }
+
+        span {
+          float: right;
+        }
+      }
+    }
+  }
+
+  .form-group {
+    margin: 0 0 10px 0;
+  }
+
+  textarea {
+    height: 130px;
+  }
+}
+
+.box_order {
+  a.close_panel_mobile {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    color: #fff;
+    @include fontSize(26px);
+    display: none;
+  }
+
+  &.mobile_fixed {
+    @include tablet {
+      display: none;
+      @include border-radius(0);
+      position: fixed;
+      overflow-y: scroll;
+      border: 0;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999999;
+      background-color: #fff;
+
+      .head {
+        padding: 10px 20px 10px 20px;
+        position: relative;
+        @include border-radius(0);
+
+        h3 {
+          @include fontSize(18px);
+          text-transform: uppercase;
+        }
+
+        .offer {
+          display: none;
+        }
+
+        a.close_panel_mobile {
+          display: inline-block;
+        }
+      }
+
+      .main {
+        padding-bottom: 50px;
+      }
+
+      .btn_1_mobile {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 10px 10px 6px 10px;
+        background-color: #fff;
+        border-top: 1px solid #ededed;
+        z-index: 9999999;
+
+        .text-center {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.numbers-row {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  border: 2px solid $border-color-3;
+  margin-bottom: 25px;
+
+  input {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    left: 50%;
+    padding: 5px;
+    border: none;
+    margin-left: -20px;
+    font-weight: 500;
+    background: none;
+    @include fontSize(18px);
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .button_inc {
+    cursor: pointer;
+    position: absolute;
+    width: 33px;
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    z-index: 2;
+    @include fontSize(28px);
+    font-weight: 300 !important;
+    color: #999;
+
+    &:hover {
+      color: $color-1;
+    }
+  }
+
+  .dec,
+  .inc {
+    top: 2px;
+  }
+
+  .dec {
+    left: 0;
+  }
+
+  .inc {
+    right: 0;
+  }
+}
+
+.disabled {
+  text-decoration: none;
+  cursor: default;
+  color: grey;
+  pointer-events: none;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+.changeLocation {
+  span {
+    position: absolute;
+    right: 1%;
+    bottom: 5%;
+    padding: 0.5rem;
+    background: white;
+  }
+}

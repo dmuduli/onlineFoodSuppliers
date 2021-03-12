@@ -1,0 +1,269 @@
+<header class="header_in clearfix" *ngIf="!isHideHeader">
+  <!-- /top_menu -->
+  <div class="topBar">
+    <div class="nav-menu-bar">
+      <a [routerLink]="" (click)="enableSandwichMenu()" class="open_close">
+        <i class="icon_menu"></i><span>Menu</span>
+      </a>
+      <!-- /Site Navigation -->
+      <nav class="main-menu" [ngClass]="{show : isShow}">
+        <div id="header_menu">
+          <a [routerLink]="" (click)="enableSandwichMenu()" class="open_close">
+            <i class="icon_close"></i><span>Menu</span>
+          </a>
+          <!-- <a routerLink="/Home">
+            <img src="assets/images/logo.svg" width="162" height="35" alt="">
+          </a> -->
+        </div>
+        <ul>
+          <li class="submenu">
+            <a routerLink="/foods" class="show-submenu" (click)="expandCollapseSandwichSubMenu()">Food</a>
+            <ul [ngClass]="{show_normal : is_show_normal}">
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Breakfast')"
+                  class="show-submenu">Breakfast</a>
+              </li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('North Indian')" class="show-submenu">North
+                  Indian</a></li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('South Indian')" class="show-submenu">South
+                  Indian</a></li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Continental')"
+                  class="show-submenu">Continental</a></li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Oriental')" class="show-submenu">Oriental</a>
+              </li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Regional')" class="show-submenu">Regional</a>
+              </li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Snacks')" class="show-submenu">Snacks</a>
+              </li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Healthy')" class="show-submenu">Healthy</a>
+              </li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Platter')" class="show-submenu">Platter</a>
+              </li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Deserts')" class="show-submenu">Desserts</a>
+              </li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Beverages')"
+                  class="show-submenu">Beverages</a></li>
+            </ul>
+          </li>
+          <!--./-->
+          <li class="submenu">
+            <a routerLink="/sugar-spice" class="show-submenu" (click)="expandCollapseSandwichSubMenu()">Sugar & Spices</a>
+            <ul [ngClass]="{show_normal : is_show_normal}">
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Bakery Items')" class="show-submenu">Bakery
+                  Items</a>
+              </li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Chocolates')"
+                  class="show-submenu">Chocolates</a></li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Savories')" class="show-submenu">Savories</a>
+              </li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Jams & Spreads')" class="show-submenu">Jams &
+                  Spreads</a></li>
+
+              <li><a href="javascript:void(0)" (click)="navigateToCategory('Spices & Pickles')"
+                  class="show-submenu">Spices &
+                  Pickles</a>
+              </li>
+            </ul>
+          </li>
+          <!--./-->
+          <!-- <li class="submenu">
+            <a routerLink="/home" class="show-submenu">Home Decor</a>
+          </li> -->
+          <!--./-->
+          <!-- <li class="submenu">
+            <a routerLink="/home" class="show-submenu">Fashion</a>
+          </li> -->
+          <!--./-->
+          <!-- <li class="submenu">
+            <a routerLink="/home" class="show-submenu">Plants & Planters</a>
+          </li> -->
+          <!--./-->
+        </ul>
+      </nav>
+    </div>
+    <!-- /Logo -->
+    <div class="leftBox" id="logo">
+      <a routerLink="/home">
+        <img src="assets/images/logo.svg" width="160" height="55" alt="">
+      </a>
+    </div>
+    <!-- /Search Box, Location ,Profile Cart -->
+    <div class="rightBox">
+      <!-- <div class="search-container">
+        <mat-form-field appearance="outline" class="search-box">
+          <mat-label>Search for anything...</mat-label>
+          <input type="text" placeholder="Search for anything..." matInput [matAutocomplete]="autoOne" #searchInput
+            [(ngModel)]="searchVal">
+          <mat-icon matSuffix>search</mat-icon>
+          <mat-autocomplete #autoOne="matAutocomplete">
+            <mat-option *ngFor="let item of filteredOptions | async"
+              [value]="item.type === 'item' ? item.itemname : (item.type === 'vendorname' ? item.firstname : (item.type === 'subcategoryname' ? item.subcategoryName : ''))"
+              (onSelectionChange)="navigateToDetailPage($event, item)" class="search-box__option">
+              <img class="search-box__img" aria-hidden
+                [src]="item.imagePath ? item.imagePath : 'assets/images/lazy-placeholder.png'" height="25">
+              <span *ngIf="item.type === 'item'">{{item.itemname | titlecase}}</span>
+              <span *ngIf="item.type === 'vendorname'">{{item.firstname | titlecase}}</span>
+              <span *ngIf="item.type === 'subcategoryname'">{{item.subcategoryName | titlecase}}</span>
+              <span *ngIf="item.type === 'item'">Price: {{item.price | currency: 'INR'}}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div> -->
+
+      <div class="menuList">
+        <ul>
+          <li><a href="javascript:void(0)" id="sign-in" (click)="setLocation()"><img class="location-icon" src="assets/images/location.svg"
+                alt="location"></a></li>
+          <!-- <li><a href="javascript:void(0)"><img class="search-icon" src="assets/images/search.svg"
+                alt="Search"></a></li> -->
+          <li class="dropdownMenu">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <img class="profile-icon" src="assets/images/user.svg" alt="user">
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a routerLink="/profile" *ngIf="user">Profile</a></li>
+              <li><a routerLink="/profile/myorders" *ngIf="user">My Orders</a></li>
+              <li><a routerLink="/profile/favourites" *ngIf="user">Favourites</a></li>
+              <li><a href="javascript:void(0)" *ngIf="!user" class="sign-in-link" (click)="redirectToAuth()">Sign In</a></li>
+              <li><a routerLink="/auth" *ngIf="user" (click)="logOutUser()">Sign Out</a></li>
+            </ul>
+          </li>
+          <li *ngIf="user"><a routerLink="/cart" class="cart_bt"><img class="cart-icon" src="assets/images/cart.svg" alt="cart"><span
+                class="cart-badge" *ngIf="cartItemCount > 0">{{cartItemCount}}</span></a></li>
+
+          <li *ngIf="!user"><a routerLink="/cart" class="cart_bt"><img class="cart-icon" src="assets/images/cart.svg" alt="cart"><span
+                class="cart-badge" *ngIf="guestCartCount > 0">{{guestCartCount}}</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <!--Full width Search Box in Mobile versions-->
+  <!-- <div class="page_header element_to_stick dHide" *ngIf="!isHideHeader"> -->
+  <div class="page_header search-panel-wrapper" *ngIf="!isHideHeader">
+    <mat-form-field appearance="outline" class="search-box">
+      <mat-label>Search for anything...</mat-label>
+      <input type="text" placeholder="Search for anything..." matInput [matAutocomplete]="auto" #searchInputOne
+        [(ngModel)]="searchVal">
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let item of filteredOptionsMobile | async"
+          [value]="item.type === 'item' ? item.itemname : (item.type === 'vendorname' ? item.firstname : (item.type === 'subcategoryname' ? item.subcategoryName : ''))"
+          (onSelectionChange)="navigateToDetailPage($event, item)" class="search-box__option">
+          <img class="search-box__img" aria-hidden
+            [src]="item.imagePath ? item.imagePath : 'assets/images/lazy-placeholder.png'" height="25">
+          <span *ngIf="item.type === 'item'">{{item.itemname | titlecase}}</span>
+          <span *ngIf="item.type === 'vendorname'">{{item.firstname | titlecase}}</span>
+          <span *ngIf="item.type === 'subcategoryname'">{{item.subcategoryName | titlecase}}</span>
+          <!-- <span *ngIf="item.type === 'item'">Price: {{item.price | currency: 'INR'}}</span> -->
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <router-outlet></router-outlet>
+</main>
+
+<footer *ngIf="!isHideHeader" class="footer-wrapper">
+  <!-- <div class="wave footer"></div> -->
+  <div class="container-fluid margin_30_40 fix_mobile">
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <h3 (click)="isCollapse1Show = !isCollapse1Show" data-target="#collapse_1"
+          [ngClass]="{ 'opened' : isCollapse1Show, 'collapsed' : !isCollapse1Show }">Quick Links</h3>
+        <div class="collapse dont-collapse-sm links" id="collapse_1" [ngClass]="{ 'show' : isCollapse1Show}">
+          <ul>
+            <li><a href="javascript:void(0)">Sell with Us</a></li>
+            <li><a routerLink="/about-us">About us</a></li>
+            <li><a routerLink="/contact-us">Contact Us</a></li>
+            <li><a routerLink="/faq">FAQ's</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h3 data-target="#collapse_2" (click)="isCollapse2Show = !isCollapse2Show"
+          [ngClass]="{ 'opened' : isCollapse2Show, 'collapsed' : !isCollapse2Show }">Categories</h3>
+        <div class="collapse dont-collapse-sm links" id="collapse_2" [ngClass]="{ 'show' : isCollapse2Show}">
+          <ul>
+            <li><a routerLink="/foods">Food</a></li>
+            <li><a routerLink="/sugar-spice">Sugar & Spices</a></li>
+            <li><a routerLink="/foods">Home Decor</a></li>
+            <li><a routerLink="/foods">Fashion</a></li>
+            <li><a routerLink="/foods">Plants & Planters</a></li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h3 data-target="#collapse_3" (click)="isCollapse3Show = !isCollapse3Show"
+          [ngClass]="{ 'opened' : isCollapse3Show, 'collapsed' : !isCollapse3Show }">Contacts</h3>
+        <div class="collapse dont-collapse-sm contacts" id="collapse_3" [ngClass]="{ 'show' : isCollapse3Show}">
+          <ul>
+            <li>C-520, I-Thum Towers, Block B.
+              Sector 62,<br/>Noida, 201309,
+              Uttar Pradesh</li>
+            <li><a href="tel:+919910119971">+91 9910119971</a></li>
+            <li><a href="mailto:support@fromhomemade.com">support@fromhomemade.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h3 data-target="#collapse_4" (click)="isCollapse4Show = !isCollapse4Show"
+          [ngClass]="{ 'opened' : isCollapse4Show, 'collapsed' : !isCollapse4Show }">Subscribe for regular updates</h3>
+        <div class="collapse dont-collapse-sm" id="collapse_4" [ngClass]="{ 'show' : isCollapse4Show}">
+          <div id="newsletter">
+            <div id="message-newsletter"></div>
+            <form method="post" action="assets/newsletter.php" name="newsletter_form" id="newsletter_form">
+              <div class="form-group">
+                <input type="email" name="email_newsletter" id="email_newsletter" class="form-control"
+                  placeholder="Your email">
+                <button type="submit" id="submit-newsletter"><i class="arrow_carrot-right"></i></button>
+              </div>
+            </form>
+          </div>
+          <div class="follow_us">
+            <h5>Follow Us</h5>
+            <ul>
+              <li><a href="https://www.linkedin.com/company/fromhomemade/" target="_blank"><img
+                    src="assets/images/linkedin.png" data-src="assets/images/linkedin.png" alt="" class="lazy"></a></li>
+              <li><a href="https://www.facebook.com/fr0mhomemade/" target="_blank"><img
+                    src="assets/images/facebook_icon.svg" data-src="assets/images/facebook_icon.svg" alt=""
+                    class="lazy"></a></li>
+              <li><a href="https://www.instagram.com/fromhomemade/" target="_blank"><img
+                    src="assets/images/instagram_icon.svg" data-src="assets/images/instagram_icon.svg" alt=""
+                    class="lazy"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /row-->
+    <hr>
+    <div class="row add_bottom_25">
+      <div class="col-lg-12 additional-footer-links">
+        <ul class="additional_links">
+          <li><a href="javascript:void(0)" routerLink="/terms-condition">Terms and conditions</a></li>
+          <li><a href="javascript:void(0)" routerLink="/privacy-policy">Privacy Policy</a></li>
+          <li><span>2020 © Fromhomemade</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--/footer-->
+
+<div id="toTop" class="detail_page" [ngClass]="{ visible : is_navToTop_visible}" (click)="scrollToTop()"></div>
+<!-- Back to top button -->

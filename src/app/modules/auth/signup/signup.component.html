@@ -1,0 +1,55 @@
+<div id="register_bg">
+    <div id="register">
+        <aside>
+            <!-- <figure>
+                <a href="javascript:void(0)" [routerLink]="['/home']"><img src="assets/images/logo.svg" width="140"
+                        height="35" alt=""></a>
+            </figure> -->
+            <h1 class="login-title">Register</h1>
+            <p class="login-info">Please fill in the information below</p>
+            <div class="access_social">
+                <a href="#0" class="social_bt facebook">Register with Facebook</a>
+                <a href="#0" class="social_bt google">Register with Google</a>
+            </div>
+            <div class="divider"><span>Or</span></div>
+            <form id="regForm" name="regForm" [formGroup]="form">
+                <div class="form-group">
+                    <p *ngIf="name!.errors?.required  && (name!.touched || name!.dirty)" class="error-msg">Please enter your name!!</p>
+                    <input class="form-control" type="text" name="name" placeholder="Your Name" required
+                        formControlName="name">
+                </div>
+                <div class="form-group">
+                    <p *ngIf="email!.errors?.required  && (email!.touched || email!.dirty)" class="error-msg">Please enter your email!!</p>
+                    <p *ngIf="email!.errors?.InvalidEmail  && (email!.touched || email!.dirty)" class="error-msg">Please enter valid email!!</p>
+                    <input class="form-control" type="email" name="email" placeholder="Email" required
+                        formControlName="email">
+                </div>
+                <div class="form-group">
+                    <p *ngIf="mobile!.errors && (mobile!.touched || mobile!.dirty)" class="error-msg">Please enter valid mobile no!!</p>
+                    <input class="form-control" type="text" name="mobile" placeholder="Mobile Number" required
+                       minlength="10" maxlength="10" formControlName="mobile">
+                </div>
+                <div class="form-group">
+                    <p *ngIf="password!.errors?.required  && (password!.touched || password!.dirty)" class="error-msg">Please enter your password!!</p>
+                    <input class="form-control" type="password" id="password1" name="password" placeholder="Password"
+                        required formControlName="password">
+                </div>
+                <div class="form-group">
+                    <p *ngIf="confirmPassword!.errors?.incorrect  && (confirmPassword!.touched || confirmPassword!.dirty)" class="error-msg">
+                        Passwod doesn't match!!</p>
+                    <p *ngIf="confirmPassword!.errors?.required  && (confirmPassword!.touched || confirmPassword!.dirty)" class="error-msg">Please confirm your password!!</p>
+                    <input class="form-control" type="password" id="password2" name="password"
+                        placeholder="Confirm Password" required formControlName="confirmPassword">
+                </div>
+                <div id="pass-info" class="clearfix"></div>
+                <button type="submit" value="Register Now" class="btn_1 gradient" (click)="onSubmit()">Register
+                    Now</button>
+
+                <div class="text-center mt-2">Already have an acccount? <strong><a href="javascript:void(0)"
+                                [routerLink]="['/auth']">Sign In</a></strong>
+                </div>
+            </form>
+        </aside>
+    </div>
+    <!-- /login -->
+</div>

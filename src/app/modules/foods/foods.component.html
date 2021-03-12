@@ -1,0 +1,521 @@
+<div class="foods">
+    <div class="bg_gray bg_white">
+        <div class="container-fluid margin_detail_2 px-50">
+            <div class="row">
+                <div class="col-12">
+                    <div class="categories_carousel_in listing">
+                        <owl-carousel-o [options]="customOptions">
+                            <ng-container *ngFor="let category of categories; let i = index;">
+                                <ng-template carouselSlide class="slide" [id]="'image' + i">
+                                    <div class="item">
+                                        <figure>
+                                            <img [src]="category.imgUrl ? category.imgUrl : 'assets/images/lazy-placeholder.png'"
+                                                alt="" class="owl-lazy">
+                                            <a (click)="navigateToSubCategory(category.component)">
+                                                <h3>{{category.label}}</h3>
+                                            </a>
+                                        </figure>
+                                    </div>
+                                </ng-template>
+                            </ng-container>
+                        </owl-carousel-o>
+                        <!-- <ng-container *ngFor="let category of categories; let i = index;">
+                            <div class="category-page-banner-items" [id]="'image' + i">
+                                <figure>
+                                    <img [src]="category.imgUrl ? category.imgUrl : 'assets/images/lazy-placeholder.png'"
+                                        alt="" class="owl-lazy">
+                                    <a (click)="navigateToSubCategory(category.component)">
+                                        <h3>{{category.label}}</h3>
+                                    </a>
+                                </figure>
+                            </div>
+                        </ng-container> -->
+                    </div>
+
+                    <div class="promo">
+                        <h3>Free Delivery for your first 14 days!</h3>
+                        <!-- <p>We deliver the best fresh and healthy foods in the market.</p> -->
+                        <!-- <i class="icon-food_icon_delivery"></i> -->
+                    </div>
+                    <!-- /promo -->
+
+                    <nav class="secondary_nav sticky_horizontal">
+                        <h3 class="sub-category-title">Eat what makes you happy</h3>
+                        <ul id="secondary_nav">
+                            <li><a href="javascript:void(0)" (click)="navigateToCategory('Breakfast')"
+                                    class="show-submenu" fragment="section1">Beakfast</a>
+                            </li>
+
+                            <li><a href="javascript:void(0)" (click)="navigateToCategory('North Indian')"
+                                    class="show-submenu" fragment="section2">North
+                                    Indian</a></li>
+
+                            <li><a href="javascript:void(0)" (click)="navigateToCategory('South Indian')"
+                                    class="show-submenu" fragment="section3">South
+                                    Indian</a></li>
+
+                            <li><a href="javascript:void(0)" (click)="navigateToCategory('Continental')"
+                                    class="show-submenu" fragment="section4">Continental</a></li>
+
+                            <li><a href="javascript:void(0)" (click)="navigateToCategory('Oriental')"
+                                    class="show-submenu" fragment="section5">Oriental</a>
+                            </li>
+
+                            <li><a href="javascript:void(0)" (click)="navigateToCategory('Deserts')"
+                                    class="show-submenu" fragment="section6">Desserts</a>
+                            </li>
+
+                            <li><a href="javascript:void(0)" (click)="navigateToCategory('Beverages')"
+                                    class="show-submenu" fragment="section7">Beverages</a></li>
+
+                            <li><a href="javascript:void(0)" (click)="navigateToCategory('Platter')"
+                                    class="show-submenu" fragment="section8">Platter</a>
+                            </li>
+
+                            <li><a href="javascript:void(0)" (click)="navigateToCategory('Healthy')"
+                                    class="show-submenu" fragment="section9">Healthy</a>
+                            </li>
+
+                            <li><a href="javascript:void(0)" (click)="navigateToCategory('Regional')"
+                                    class="show-submenu" fragment="section10">Regional</a>
+                            </li>
+
+                            <li><a href="javascript:void(0)" (click)="navigateToCategory('Biscuits')"
+                                    class="show-submenu" fragment="section11">Biscuits</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /secondary_nav -->
+
+                    <div class="card type3" id="section1" #breakfast>
+                        <div class="main_title">
+                            <h2>Breakfast</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3" *ngFor="let item of breakfastData">
+                                <div class="cardbody">
+                                    <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                        <div class="imgBox">
+                                            <figure>
+                                                <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                    alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                            </figure>
+                                        </div>
+                                        <div class="contentBox">
+                                            <div class="pro_detials">
+                                                <h3>{{item.ItemName}}</h3>
+                                                <p class="price">Rs.{{item.ItemPrice}}</p>
+                                            </div>
+                                            <div class="prod_cta">
+                                                <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                                    (click)="orderNow($event, item)">Order Now</a>
+                                            </div>
+
+                                            <!-- <p class="availablity">{{item.availability}}</p> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--./card ends-->
+
+                    <div class="card type3" id="section2" #northIndian>
+                        <div class="main_title">
+                            <h2>North Indian</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3" *ngFor="let item of northIndianData">
+                                <div class="cardbody">
+                                    <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                        <div class="imgBox">
+                                            <figure>
+                                                <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                    alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                            </figure>
+                                        </div>
+                                        <div class="contentBox">
+                                            <div class="pro_detials">
+                                                <h3>{{item.ItemName}}</h3>
+                                                <p class="price">Rs.{{item.ItemPrice}}</p>
+                                            </div>
+                                            <div class="prod_cta">
+                                                <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                                    (click)="orderNow($event, item)">Order Now</a>
+                                            </div>
+
+                                            <!-- <p class="availablity">{{item.availability}}</p> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--./card ends-->
+
+                    <div class="card type3" id="section3" #southIndian>
+                        <div class="main_title">
+                            <h2>South Indian</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3" *ngFor="let item of southIndianData">
+                                <div class="cardbody">
+                                    <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                        <div class="imgBox">
+                                            <figure>
+                                                <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                    alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                            </figure>
+                                        </div>
+                                        <div class="contentBox">
+                                            <div class="pro_detials">
+                                                <h3>{{item.ItemName}}</h3>
+                                                <p class="price">Rs.{{item.ItemPrice}}</p>
+                                            </div>
+                                            <div class="prod_cta">
+                                                <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                                    (click)="orderNow($event, item)">Order Now</a>
+                                            </div>
+
+                                            <!-- <p class="availablity">{{item.availability}}</p> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--./card ends-->
+
+                    <div class="card type3" id="section4" #continental>
+                        <div class="main_title">
+                            <h2>Continental</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3" *ngFor="let item of continentalData">
+                                <div class="cardbody">
+                                    <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                        <div class="imgBox">
+                                            <figure>
+                                                <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                    alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                            </figure>
+                                        </div>
+                                        <div class="contentBox">
+                                            <div class="pro_detials">
+                                                <h3>{{item.ItemName}}</h3>
+                                                <p class="price">Rs.{{item.ItemPrice}}</p>
+                                            </div>
+                                            <div class="prod_cta">
+                                                <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                                    (click)="orderNow($event, item)">Order Now</a>
+                                            </div>
+
+                                            <!-- <p class="availablity">{{item.availability}}</p> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--./card ends-->
+
+                    <div class="card type3" id="section5" #oriental>
+                        <div class="main_title">
+                            <h2>Oriental</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3" *ngFor="let item of orientalData">
+                                <div class="cardbody">
+                                    <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                        <div class="imgBox">
+                                            <figure>
+                                                <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                    alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                            </figure>
+                                        </div>
+                                        <div class="contentBox">
+                                            <div class="pro_detials">
+                                                <h3>{{item.ItemName}}</h3>
+                                                <p class="price">Rs.{{item.ItemPrice}}</p>
+                                            </div>
+                                            <div class="prod_cta">
+                                                <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                                    (click)="orderNow($event, item)">Order Now</a>
+                                            </div>
+
+                                            <!-- <p class="availablity">{{item.availability}}</p> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--./card ends-->
+
+                    <div class="card type3" id="section6" #desserts>
+                        <div class="main_title">
+                            <h2>Desserts</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3" *ngFor="let item of desertsData">
+                                <div class="cardbody">
+                                    <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                        <div class="imgBox">
+                                            <figure>
+                                                <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                    alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                            </figure>
+                                        </div>
+                                        <div class="contentBox">
+                                            <div class="pro_detials">
+                                                <h3>{{item.ItemName}}</h3>
+                                                <p class="price">Rs.{{item.ItemPrice}}</p>
+                                            </div>
+                                            <div class="prod_cta">
+                                                <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                                    (click)="orderNow($event, item)">Order Now</a>
+                                            </div>
+
+                                            <!-- <p class="availablity">{{item.availability}}</p> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--./card ends-->
+
+                    <div class="card type3" id="section7" #beverages>
+                        <div class="main_title">
+                            <h2>Beverages</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3" *ngFor="let item of beveragesData">
+                                <div class="cardbody">
+                                    <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                        <div class="imgBox">
+                                            <figure>
+                                                <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                    alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                            </figure>
+                                        </div>
+                                        <div class="contentBox">
+                                            <div class="pro_detials">
+                                                <h3>{{item.ItemName}}</h3>
+                                                <p class="price">Rs.{{item.ItemPrice}}</p>
+                                            </div>
+                                            <div class="prod_cta">
+                                                <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                                    (click)="orderNow($event, item)">Order Now</a>
+                                            </div>
+
+                                            <!-- <p class="availablity">{{item.availability}}</p> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--./card ends-->
+
+                    <div class="card type3" id="section8" #platter>
+                        <div class="main_title">
+                            <h2>Platter</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3" *ngFor="let item of platterData">
+                                <div class="cardbody">
+                                    <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                        <div class="imgBox">
+                                            <figure>
+                                                <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                    alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                            </figure>
+                                        </div>
+                                        <div class="contentBox">
+                                            <div class="pro_detials">
+                                                <h3>{{item.ItemName}}</h3>
+                                                <p class="price">Rs.{{item.ItemPrice}}</p>
+                                            </div>
+                                            <div class="prod_cta">
+                                                <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                                    (click)="orderNow($event, item)">Order Now</a>
+                                            </div>
+
+                                            <!-- <p class="availablity">{{item.availability}}</p> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--./card ends-->
+
+                    <div class="card type3" id="section8" #healthy>
+                        <div class="main_title">
+                            <h2>Healthy</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3" *ngFor="let item of healthyData">
+                                <div class="cardbody">
+                                    <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                        <div class="imgBox">
+                                            <figure>
+                                                <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                    alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                            </figure>
+                                        </div>
+                                        <div class="contentBox">
+                                            <div class="pro_detials">
+                                                <h3>{{item.ItemName}}</h3>
+                                                <p class="price">Rs.{{item.ItemPrice}}</p>
+                                            </div>
+                                            <div class="prod_cta">
+                                                <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                                    (click)="orderNow($event, item)">Order Now</a>
+                                            </div>
+
+                                            <!-- <p class="availablity">{{item.availability}}</p> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--./card ends-->
+
+                    <div class="card type3" id="section8" #regional>
+                        <div class="main_title">
+                            <h2>Regional</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3" *ngFor="let item of regionalData">
+                                <div class="cardbody">
+                                    <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                        <div class="imgBox">
+                                            <figure>
+                                                <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                    alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                            </figure>
+                                        </div>
+                                        <div class="contentBox">
+                                            <div class="pro_detials">
+                                                <h3>{{item.ItemName}}</h3>
+                                                <p class="price">Rs.{{item.ItemPrice}}</p>
+                                            </div>
+                                            <div class="prod_cta">
+                                                <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                                    (click)="orderNow($event, item)">Order Now</a>
+                                            </div>
+
+                                            <!-- <p class="availablity">{{item.availability}}</p> -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--./card ends-->
+
+                    <!-- <div class="card type3" id="section8" #biscuits>
+                        <div class="main_title">
+                            <h2>Biscuits</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3" *ngFor="let item of biscuitsData">
+                                <div class="cardbody">
+                                    <a href="javascript:void(0)" routerLink="/foods/detail/{{item.ItemItemId}}">
+                                        <div class="imgBox">
+                                            <figure>
+                                                <img [src]="item.ItemImageUrl ? item.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                    alt="" class="lazy loaded img-fluid" data-was-processed="true">
+                                            </figure>
+                                        </div>
+                                        <div class="contentBox">
+                                            <div class="pro_detials">
+                                                <h3>{{item.ItemName}}</h3>
+                                                <p class="price">Rs.{{item.ItemPrice}}</p>
+                                            </div>
+                                            <div class="prod_cta">
+                                                <a class="btn_1 outline type_3 modal_dialog" href="javascript:void(0)"
+                                                    (click)="orderNow($event, item)">Order Now</a>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!--./card ends-->
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid margin_30_40 px-50">
+            <!--best chefs-->
+            <div class="row">
+                <div class="col-12 main_title">
+                    <h2>Chefs near you</h2>
+                </div>
+
+                <div class="chef_carousel">
+                    <owl-carousel-o [options]="customOptionsTwo">
+                        <ng-container *ngFor="let chef of chefData; let i = index;">
+                            <ng-template carouselSlide class="slide" [id]="'image' + i">
+                                <div class="item">
+                                    <div class="chefBox">
+                                        <figure>
+                                            <a href="javascript:void(0)" routerLink="/foods/chef/{{chef.chefId}}"><img
+                                                    [src]="chef.chefImage ? chef.chefImage : 'assets/images/lazy-placeholder.png'"
+                                                    class="img-fluid lazy" alt=""></a>
+                                        </figure>
+                                        <div class="cardDetails">
+                                            <h3>{{chef.firstname}}</h3>
+                                            <div class="score"><strong>{{chef.chefRating.toString().length > 1 ?
+                                                    (chef.chefRating | number : '1.1-1') : chef.chefRating}}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--./-->
+                            </ng-template>
+                        </ng-container>
+                    </owl-carousel-o>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--container-->
+    <div class="container-fluid margin_30_40 px-50">
+        <!--best chefs-->
+        <div class="row">
+            <div class="col-12 main_title">
+                <h2>Popular cuisine</h2>
+            </div>
+
+            <div class="chef_carousel">
+                <owl-carousel-o [options]="customOptionsTwo">
+                    <ng-container *ngFor="let cuisine of cuisineData; let i = index;">
+                        <ng-template carouselSlide class="slide" [id]="'image' + i">
+                            <div class="item">
+                                <div class="chefBox">
+                                    <figure>
+                                        <a href="javascript:void(0)"
+                                            [routerLink]="['/foods/category-detail',cuisine.ItemName]"><img
+                                                [src]="cuisine.ItemImageUrl ? cuisine.ItemImageUrl : 'assets/images/lazy-placeholder.png'"
+                                                class="img-fluid lazy" alt=""></a>
+                                    </figure>
+                                    <div class="cardDetails">
+                                        <h3>{{cuisine.ItemName}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--./-->
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+            </div>
+        </div>
+    </div>
+</div>

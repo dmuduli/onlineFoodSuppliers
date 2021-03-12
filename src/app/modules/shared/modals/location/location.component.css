@@ -1,0 +1,113 @@
+/*-------- 3.7 Sing In Modal --------*/
+#sign-in-dialog,
+#sign-up-dialog {
+  background: #fff;
+  padding: 30px;
+  text-align: left;
+  min-height: 200px;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Popup close button*/
+#sign-in-dialog .mfp-close,
+#sign-up-dialog .mfp-close,
+#modal-dialog .mfp-close {
+  color: #666;
+  top: 12px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+}
+
+#sign-in-dialog .mfp-close:before,
+#sign-up-dialog .mfp-close:before,
+#modal-dialog .mfp-close:before {
+  font-size: 24px;
+  font-family: "ElegantIcons";
+  content: "\4d";
+}
+
+#sign-in-dialog .mfp-close:hover,
+#sign-up-dialog .mfp-close:hover,
+#modal-dialog .mfp-close:hover {
+  color: #fff;
+  background-color: #66676b;
+}
+
+.modal_header h3 {
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+#sign-in-dialog .form-group input.form-control,
+#sign-up-dialog .form-group input.form-control {
+  padding-left: 15px;
+}
+
+#sign-in-dialog .form-group > i,
+#sign-up-dialog .form-group > i {
+  font-size: 18px;
+  font-size: 1.125rem;
+  position: absolute;
+  left: 12px;
+  top: 33px;
+  color: #ccc;
+  width: 25px;
+  height: 25px;
+  display: block;
+  font-weight: 400 !important;
+}
+
+#sign-in-dialog .form-group > i.icon_lock_alt,
+#sign-up-dialog .form-group > i.icon_lock_alt {
+  top: 35px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  color: #666;
+  background-color: #e4e4e4;
+  cursor: pointer;
+  text-decoration: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__close .material-icons {
+  color: #666;
+  font-size: 1rem;
+}
+
+.modal__close:hover {
+  background-color: #66676b;
+  color: #fff;
+}
+
+.modal__close:hover .material-icons {
+  color: #fff;
+}
+
+.changeLocation span {
+  bottom: -70% !important;
+}
+
+.changeLocation span {
+  position: absolute;
+  right: 2%;
+  bottom: 15%;
+}

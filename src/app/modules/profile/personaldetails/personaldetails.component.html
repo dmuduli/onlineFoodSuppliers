@@ -1,0 +1,42 @@
+<div class="account-main">
+    <div class="account-header">
+        <span>
+            <a href="/profile/myaccount"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+        </span>
+        <h3>Personal Details</h3>
+        <p>Feel free to edit any of your details below so your homemade account is totally up to date.</p>
+    </div>
+    <div class="account-form">
+        <form [formGroup]="persDetailForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" name="firstName" class="form-control" formControlName="firstname">
+                <p *ngIf="firstName!.errors?.required  && (firstName!.touched || firstName!.dirty)" class="error-msg">
+                    Please enter your first name!!</p>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" name="email" class="form-control" formControlName="email_Id" readonly="true">
+                <p *ngIf="email!.errors?.required  && (email!.touched || email!.dirty)" class="error-msg">Please enter
+                    your email!!</p>
+                <p *ngIf="email!.errors?.InvalidEmail  && (email!.touched || email!.dirty)" class="error-msg">Please
+                    enter valid email!!</p>
+            </div>
+            <div class="form-group">
+                <label>Mobile</label>
+                <p *ngIf="(mobile!.errors?.IsNotNumeric || mobile!.errors?.exceedsLength)  && (mobile!.touched || mobile!.dirty)"
+                    class="error-msg">Phone number should be 10 digit numeric!!</p>
+                <input type="text" name="mobile" class="form-control" formControlName="mobilenumber">
+            </div>
+
+            <div class="form-group">
+                <label>Bio</label>
+                <textarea id="as_bio" class="form-control" name="bio" required formControlName="desc"></textarea>
+            </div>
+
+            <button type="submit" class="btn_1 gradient full-width type_2">Save Details</button>
+
+        </form>
+    </div>
+</div>

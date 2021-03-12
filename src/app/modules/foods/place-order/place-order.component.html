@@ -1,0 +1,76 @@
+<div class="order" id="modal-dialog">
+    <div class="small-dialog-header">
+        <h3>{{orderData.OrderItemName}}</h3>
+    </div>
+    <div class="content">
+        <h5>Quantity</h5>
+        <div class="numbers-row">
+            <input type="text" [(ngModel)]="orderData.OrderQuantity" id="qty_1" class="qty2 form-control" name="quantity">
+            <div class="inc button_inc" (click)="incOrderQuantity()">+</div>
+            <div class="dec button_inc"  (click)="decOrderQuantity()">-</div>
+        </div>
+        <h5 *ngIf="orderData.OrderSize != null &&  orderData.OrderSize.length > 0">Size</h5>
+        <ul class="clearfix" *ngIf="orderData.OrderSize != null &&  orderData.OrderSize.length > 0">
+            <li *ngFor="let size of orderData.OrderSize;let i = index">
+                <label class="container_radio">{{size}}<span>+ $3.30</span>
+                    <input type="radio" [(ngModel)]="selectedSize" [value]="size" name="size">
+                    <span class="checkmark"></span>
+                </label>
+            </li>
+            <!-- <li>
+                <label class="container_radio">Large<span>+ $5.30</span>
+                    <input type="radio" value="option2" name="options_1">
+                    <span class="checkmark"></span>
+                </label>
+            </li>
+            <li>
+                <label class="container_radio">Extra Large<span>+ $8.30</span>
+                    <input type="radio" value="option3" name="options_1">
+                    <span class="checkmark"></span>
+                </label>
+            </li> -->
+        </ul>
+        <h5  *ngIf="orderData.OrderSimilarProducts != null &&  orderData.OrderSimilarProducts.length > 0">Similar Vendor Products</h5>
+        <ul class="clearfix"  *ngIf="orderData.OrderSimilarProducts != null &&  orderData.OrderSimilarProducts.length > 0">
+            <li class ="simProducts" *ngFor="let product of orderData.OrderSimilarProducts;let i = index">
+                <label class="container_check"  matTooltip="{{product.ItemName}}">
+                    <h3 class="prodName">{{product.ItemName}}</h3>
+                    <span class="prod-price">+ {{product.ItemPrice | currency:'INR'}}</span>
+                    <input type="checkbox" name="ingredients" [value]="product.ItemItemId" [(ngModel)]="product.ItemChecked">
+                    <span class="checkmark"></span>
+                </label>
+                <span class="numbers-row reduceDimen">
+                    <input type="text" [value]="product.ItemQuantity" [(ngModel)]="product.ItemQuantity" id="qty_{{i+2}}" class="qty2 form-control" name="quantity">
+                    <div class="inc button_inc" (click)="incSimProdQuantity(product.ItemItemId)">+</div>
+                    <div class="dec button_inc"  (click)="decSimProdQuantity(product.ItemItemId)">-</div>
+                </span>
+            </li>
+            <!-- <li>
+                <label class="container_check">Extra Peppers<span>+ $2.50</span>
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </li>
+            <li>
+                <label class="container_check">Extra Ham<span>+ $4.30</span>
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+            </li> -->
+        </ul>
+    </div>
+    <div class="footer">
+        <div class="row small-gutters">
+            <div class="col-md-6">
+                <a href="javascript:void(0)" type="reset" class="btn_1 gradient full-width" (click)="addToCart()">Add to cart</a>
+            </div>
+            <div class="col-md-6">
+                <a type="reset" class="btn_1 outline full-width" style="margin-top: 20px;" href="javascript:void(0)"
+                    (click)="dialogRef.close()">Cancel</a>
+            </div>
+        </div>
+        <!-- /Row -->
+    </div>
+
+    <button title="Close (Esc)" type="button" class="mfp-close" (click)="dialogRef.close()"></button>
+</div>

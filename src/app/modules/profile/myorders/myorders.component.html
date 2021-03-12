@@ -1,0 +1,46 @@
+<div class="account-main">
+    <div class="account-header">
+        <span>
+            <a routerLink="/profile/myaccount"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+        </span>
+        <h3>My orders</h3>
+        <!-- <p>Feel free to edit any of your details below so your homemade account is totally up to date.</p> -->
+    </div>
+    <div class="account-form">
+        <ul>
+            <li *ngFor="let order of orderData">
+                <div class="order-list">
+                    <div class="prod-img">
+                        <img [src]="order.productImage == '' ? 'assets/images/thumb_detail_1.jpg' : order.productImage"
+                            alt="Product Image" class="img-fluid">
+                    </div>
+                    <div class="prod-details">
+                        <p class="prod-name" matTooltip="{{order.productName}}">{{order.productName}}
+                            <span>{{formatDate(order.OrderDate,'MM-dd-yyyy','en')}}</span>
+                        </p>
+                        <p class="price">&#8377; {{order.productTotPrice}}</p>
+                        <!-- <p class="address">Flat No-50, NIT-1, Jaipur, Rajasthan -110010</p> -->
+                        <p class="del-date"><span>Delivered</span> on
+                            {{formatDate(order.deliveredDate,'MM-dd-yyyy','en')}}</p>
+                    </div>
+                </div>
+            </li>
+            <!--./-->
+            <!-- <li>
+                <div class="order-list">
+                    <div class="prod-img">
+                        <img src="../../../../assets/images/thumb_detail_1.jpg" alt="Product Image" class="img-fluid">
+                    </div>
+                    <div class="prod-details">
+                        <p class="prod-name">Product Name Sabudana samosa sabudana samosa <span>11-11-2020</span></p>
+                        <p class="price">&#8377; 2928</p>
+                        <p class="del-date"><span>Delivered</span> on 11-12-2020</p>
+                    </div>
+                </div>
+            </li> -->
+        </ul>
+        <mat-paginator [length]="orderPage.TotalItems" [pageSize]="orderPage.itemsPerPage" [hidePageSize]="true"
+            (page)="orderPageEvents($event)">
+        </mat-paginator>
+    </div>
+</div>

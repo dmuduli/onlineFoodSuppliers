@@ -1,0 +1,36 @@
+#modal-dialog {
+  position: relative;
+}
+
+#modal-dialog .content {
+  padding: 20px 20px 0 20px;
+  font-size: 1rem;
+  line-height: 24px;
+}
+
+#modal-dialog .content h5 {
+  font-size: 14px;
+  font-size: 0.875rem;
+  margin-bottom: 15px;
+}
+
+#modal-dialog .content ul {
+  padding: 0;
+  margin: 0 0 20px 0;
+  list-style: none;
+}
+
+#modal-dialog .content ul li span {
+  float: right;
+}
+
+#modal-dialog .footer {
+  background-color: #fff;
+  padding: 15px;
+}
+
+@media (max-width: 767px) {
+  #modal-dialog .footer .mb-mobile {
+    margin-bottom: 5px;
+  }
+}

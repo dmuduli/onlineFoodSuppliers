@@ -1,0 +1,165 @@
+/*-------- Modal Order --------*/
+#modal-dialog {
+  position: relative;
+}
+
+#modal-dialog .content {
+  padding: 20px 20px 0 20px;
+}
+
+#modal-dialog .content h5 {
+  font-size: 14px;
+  font-size: 0.875rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  #modal-dialog .content h5 {
+    margin-bottom: 25px;
+  }
+}
+
+#modal-dialog .content ul {
+  padding: 0;
+  margin: 0 0 20px 0;
+  list-style: none;
+}
+
+@media (max-width: 767px) {
+  #modal-dialog .content ul {
+    margin: 0;
+  }
+}
+
+#modal-dialog .content ul li span {
+  float: right;
+  text-transform: uppercase;
+}
+
+#modal-dialog .footer {
+  -webkit-box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  padding: 15px;
+}
+
+@media (max-width: 767px) {
+  #modal-dialog .footer {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  #modal-dialog .footer .mb-mobile {
+    margin-bottom: 5px;
+  }
+}
+
+.numbers-row {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  border: 2px solid #d2d8dd;
+  margin-bottom: 25px;
+}
+
+.numbers-row input {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  left: 50%;
+  padding: 5px;
+  border: none;
+  margin-left: -20px;
+  font-weight: 500;
+  background: none;
+  font-size: 18px;
+  font-size: 1.125rem;
+}
+
+.numbers-row input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.numbers-row .button_inc {
+  cursor: pointer;
+  position: absolute;
+  width: 33px;
+  height: 40px;
+  line-height: 30px;
+  text-align: center;
+  z-index: 2;
+  font-size: 28px;
+  font-size: 1.75rem;
+  font-weight: 300 !important;
+  color: #999;
+}
+
+.numbers-row .button_inc:hover {
+  color: #000000;
+}
+
+.numbers-row .dec,
+.numbers-row .inc {
+  top: 2px;
+}
+
+.numbers-row .dec {
+  left: 0;
+}
+
+.numbers-row .inc {
+  right: 0;
+}
+
+.simProducts .container_check {
+  margin-bottom: 4px;
+  width: 70%;
+  float: left;
+}
+
+.reduceDimen {
+  width: 25%;
+  height: 35px;
+  margin-top: -2px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a8a8a;
+}
+
+.reduceDimen input {
+  height: inherit;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.reduceDimen .button_inc {
+  height: inherit;
+  line-height: 30px;
+  font-size: 20px;
+  font-weight: 400;
+  top: 2px;
+}
+
+.reduceDimen .dec,
+.reduceDimen .inc {
+  top: 0px;
+}
+
+.prodName {
+  width: 100%;
+  display: inline-block;
+  font-weight: 400;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-style: normal;
+  letter-spacing: normal;
+}

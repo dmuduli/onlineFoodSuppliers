@@ -1,0 +1,42 @@
+<div class="bg_gray">
+    <div class="container-fluid margin_60_20 px-50">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="box_general write_review">
+                    <h1 class="add_bottom_15">Write a review for {{reviewTitle | titlecase}}</h1>
+                    <label class="d-block add_bottom_15">Overall rating</label>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>Rating <strong class="price_val"></strong></div>
+                            <mat-slider min="0" max="5" step="1" [(ngModel)]="rating" id="price" name="price" thumbLabel
+                                tickInterval="1" style="width: 100%;" color="primary">
+                            </mat-slider>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Title of your review</label>
+                        <input class="form-control" type="text" [(ngModel)]="reviewTitle"
+                            placeholder="If you could say it in one sentence, what would you say?">
+                    </div>
+                    <div class="form-group">
+                        <label>Your review</label>
+                        <textarea class="form-control" style="height: 180px;" [(ngModel)]="reviewText"
+                            placeholder="Write your review to help others learn about this online business"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkboxes float-left add_bottom_15 add_top_15">
+                            <label class="container_check">Click here to indicate that you have read
+                                and will abide by the Homemade terms and conditions.
+                                <input type="checkbox" [(ngModel)]="isConfirmed">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <a href="#" class="btn_1" (click)="onSubmit()">Submit review</a>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>

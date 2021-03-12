@@ -1,0 +1,11 @@
+.hero {
+  &__breakfast {
+    background-image: url(../../../../assets/images/breakfast.jpg);
+    background-position: center;
+    background-size: cover;
+
+    .opacity-mask {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}

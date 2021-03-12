@@ -1,0 +1,126 @@
+@import "./../../../../assets/stylesheets/scss/mixin";
+@import "./../../../../assets/stylesheets/scss/variables";
+
+#register_bg {
+  // background: #ccc url(../../../../assets/images/access_bg.jpg) center center
+  //   no-repeat fixed;
+  // @include background-size(cover);
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+}
+
+#register {
+  // @include box-shadow(3px 0 30px rgba(0, 0, 0, 0.2));
+  width: 430px;
+  margin: auto;
+
+  @include mobile {
+    width: 100%;
+    padding: 30px;
+  }
+  figure {
+    margin: 0;
+    text-align: center;
+    border-bottom: 1px solid $border-color-2;
+    padding: 0 60px 30px 60px;
+
+    @include mobile {
+      margin: -30px -30px 20px -30px;
+      padding: 20px 30px;
+    }
+  }
+  .login-title{
+    @include fontSize(20px);
+    font-weight: 600;
+    color: rgb(28, 27, 27);
+    letter-spacing: 0.2em;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .login-info{
+    @include fontSize(14px);
+    color: rgb(28, 27, 27);
+    letter-spacing: 0.2em;
+    text-align: center;
+  }
+  form {
+    margin-bottom: 30px;
+    display: block;
+
+    .form-group {
+      input {
+        padding-left: 16px;
+      }
+
+      i {
+        @include fontSize(18px);
+        position: absolute;
+        left: 12px;
+        top: 9px;
+        color: #ccc;
+        width: 25px;
+        height: 25px;
+        display: block;
+        font-weight: 400 !important;
+
+        &.icon_lock_alt {
+          top: 10px;
+        }
+      }
+    }
+  }
+
+  .copy {
+    text-align: center;
+    position: absolute;
+    padding-top: 10px;
+    height: 30px;
+    left: 0;
+    bottom: 30px;
+    width: 100%;
+    color: #999;
+  }
+}
+
+.access_social {
+  margin-top: 40px;
+  text-transform: uppercase;
+  @include mobile {
+    margin-top: 30px;
+  }
+}
+
+.divider {
+  text-align: center;
+  height: 1px;
+  margin: 30px 0;
+  background-color: $border-color-2;
+
+  span {
+    position: relative;
+    top: -20px;
+    background-color: #fff;
+    display: inline-block;
+    padding: 10px;
+    font-style: italic;
+  }
+}
+
+a.social_bt {
+  text-align: center;
+  min-width: 200px;
+  margin-bottom: 15px;
+  display: block;
+  padding: 14px;
+  line-height: $line-height-none;
+  position: relative;
+  @include transition-default;
+  cursor: pointer;
+
+  &:hover {
+    -webkit-filter: brightness(115%);
+    filter: brightness(115%);
+  }
+}
